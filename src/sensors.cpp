@@ -13,7 +13,7 @@ int readReflectanceSensor(int pin) {
 Direction determineDirection(int leftSensor, int rightSensor) {
     if (leftSensor >= reflectanceThreshold && rightSensor >= reflectanceThreshold) {
         return NOT_ON_LINE;
-    } else if (abs(leftSensor - rightSensor) < reflectanceDifferenceThreshold && leftSensor <= reflectanceThreshold && rightSensor <= reflectanceThreshold) {
+    } else if (abs(leftSensor - rightSensor) < reflectanceDifferenceThreshold && leftSensor < reflectanceThreshold && rightSensor < reflectanceThreshold) {
         return CENTERED;
     } else if (leftSensor < reflectanceThreshold && rightSensor >= reflectanceThreshold) {
         return LEFT;

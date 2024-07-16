@@ -68,8 +68,8 @@ void flipCounters(int speed, int leftSensorPin, int rightSensorPin, int microSwi
         }
         else {
             driveForward(speed);
-            delay(10);
         }
+        delay(10);
     }
 }
 
@@ -90,10 +90,12 @@ void skipLinesAndStop(int leftSensorPin, int rightSensorPin, int linesToSkip, in
         }
 
         // Move left or right based on the direction parameter
+        while (!isOnLine(leftSensorPin, rightSensorPin)) {
         if (moveDirection == LEFT) {
             driveLeft(moveSpeed);
         } else if (moveDirection == RIGHT) {
             driveRight(moveSpeed);
+        }
         }
 
         delay(50); // Small delay to allow for sensor reading stabilization
