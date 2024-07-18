@@ -15,5 +15,6 @@ void stopRobot();
 void testDriveForwardBackward();
 void testDriveLeftRight();
 void testRotate();
+void setAllMotorsToZero();
 
 #endif // DRIVE_H

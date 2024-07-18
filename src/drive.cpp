@@ -143,3 +143,14 @@ void testRotate() {
     stopRobot();
     delay(500);
 }
+
+void setAllMotorsToZero() {
+    ledcWrite(backRightPwmChannel1, 0);
+    ledcWrite(backRightPwmChannel2, 0);
+    ledcWrite(backLeftPwmChannel1, 0);
+    ledcWrite(backLeftPwmChannel2, 0);
+    ledcWrite(frontRightPwmChannel1, 0);
+    ledcWrite(frontRightPwmChannel2, 0);
+    ledcWrite(frontLeftPwmChannel1, 0);
+    ledcWrite(frontLeftPwmChannel2, 0);
+}

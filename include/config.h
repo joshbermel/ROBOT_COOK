@@ -2,17 +2,20 @@
 #define CONFIG_H
 
 // Motor pins
-const int backRightMotorPin1 = 37;
-const int backRightMotorPin2 = 38;
-const int backLeftMotorPin1 = 9;
-const int backLeftMotorPin2 = 10;
-const int frontRightMotorPin1 = 5;
-const int frontRightMotorPin2 = 7;
-const int frontLeftMotorPin1 = 8;
-const int frontLeftMotorPin2 = 19;
+const int backRightMotorPin1 = 32;
+const int backRightMotorPin2 = 33;
+const int backLeftMotorPin1 = 27;
+const int backLeftMotorPin2 = 14;
+const int frontRightMotorPin1 = 20;
+const int frontRightMotorPin2 = 21;
+const int frontLeftMotorPin1 = 12;
+const int frontLeftMotorPin2 = 13;
 
 // PWM channels
+
+// backwards
 const int backRightPwmChannel1 = 0;
+// forwards
 const int backRightPwmChannel2 = 1;
 const int backLeftPwmChannel1 = 2;
 const int backLeftPwmChannel2 = 3;
