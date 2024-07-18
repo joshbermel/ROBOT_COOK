@@ -4,8 +4,8 @@
 #include <Arduino.h>
 
 void initializeMotorPins();
-void setMotorSpeed(int pwmChannel1, int pwmChannel2, bool direction, int speed);
-void dynamicBrakeMotor(int pwmChannel1, int pwmChannel2);
+void setMotorSpeed(int pwmPin1, int pwmPin2, bool direction, int speed);
+void dynamicBrakeMotor(int pwmPin1, int pwmPin2);
 void driveForward(int speed);
 void driveBackward(int speed);
 void driveLeft(int speed);

@@ -12,15 +12,15 @@ void leftStop(int speed, int leftSensorPin, int rightSensorPin) {
         Direction dir = determineDirection(leftSensorValue, rightSensorValue);
 
         if (dir == CENTERED) {
-            stopRobot();
+            setAllMotorsToZero();
             Serial.println("Robot is centered on the line.");
             break;
         } else if (dir == LEFT) {
             Serial.println("Robot needs to move left.");
-            driveLeft(speed);
+            driveLeft(speed*0.3);
         } else if (dir == RIGHT) {
             Serial.println("Robot needs to move right.");
-            driveRight(speed);
+            driveRight(speed*0.3);
         } else {
             Serial.println("Robot is not on the line, moving left.");
             driveLeft(speed);
@@ -36,20 +36,20 @@ void rightStop(int speed, int leftSensorPin, int rightSensorPin) {
         Direction dir = determineDirection(leftSensorValue,rightSensorValue);
 
         if (dir == CENTERED) {
-            stopRobot();
+            setAllMotorsToZero();
             Serial.println("Robot is centered on the line.");
             break;
         } else if (dir == LEFT) {
              Serial.println("Robot needs to move left.");
-            driveLeft(speed);
+            driveLeft(speed*0.3);
         } else if (dir == RIGHT) {
             Serial.println("Robot needs to move right.");
-            driveRight(speed);
+            driveRight(speed*0.3);
         } else {
             Serial.println("Robot is not on the line, moving right.");
             driveRight(speed);
         }
-        delay(50); 
+        delay(20); 
     }
 }
 
@@ -100,6 +100,7 @@ void skipLinesAndStop(int leftSensorPin, int rightSensorPin, int linesToSkip, in
 
         delay(50); // Small delay to allow for sensor reading stabilization
     }
+    // read the first time we get centered, increment the count, check if we are at count limit, if not, delay a small time (until we are off the line), check again for the next line. 
 
     // Stop on the final line detected
          if (moveDirection == LEFT) {

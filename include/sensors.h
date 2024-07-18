@@ -14,5 +14,9 @@ void initializeSensorPins();
 int readReflectanceSensor(int pin);
 Direction determineDirection(int leftSensor, int rightSensor);
 bool isOnLine(int leftSensorPin, int rightSensorPin);
+void testBothReflectanceSensor(int leftSensorPin, int rightSensorPin);
+void testSingleReflectanceSensor(int sensorPin);
+void testDetermineDirection(int leftSensorReading, int rightSensorReading);
+void testIsOnLine(int leftSensorPin, int rightSensorPin);
 
 #endif // SENSORS_H
