@@ -5,6 +5,7 @@
 #include "microswitch.h"
 #include "servos.h"
 
+// Drives the robot left at a given speed until it is centered on the nearest black line. 
 void leftStop(int speed, int leftSensorPin, int rightSensorPin) {
     while (true) {
         int leftSensorValue = readReflectanceSensor(leftSensorPin);
@@ -29,6 +30,7 @@ void leftStop(int speed, int leftSensorPin, int rightSensorPin) {
     }
 }
 
+// Drives the robot right at a given speed until it is centered on the nearest black line. 
 void rightStop(int speed, int leftSensorPin, int rightSensorPin) {
     while (true) {
         int leftSensorValue = readReflectanceSensor(leftSensorPin);
@@ -73,6 +75,7 @@ void flipCounters(int speed, int leftSensorPin, int rightSensorPin, int microSwi
     }
 }
 
+// Garbage function. Refer to skipLinesAndStop2()
 void skipLinesAndStop(int leftSensorPin, int rightSensorPin, int linesToSkip, int moveSpeed, Direction moveDirection) {
     int linesSkipped = 0;
     bool onLine = false;
@@ -114,6 +117,7 @@ void skipLinesAndStop(int leftSensorPin, int rightSensorPin, int linesToSkip, in
     Serial.println("Final line reached and stopped.");
 }
 
+// Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line aftwards.
 void skipLinesAndStop2(int leftSensorPin, int rightSensorPin, int linesToSkip, int moveSpeed, Direction moveDirection) {
     int linesSkipped = 0;
     bool onLine = false;
@@ -156,10 +160,11 @@ void skipLinesAndStop2(int leftSensorPin, int rightSensorPin, int linesToSkip, i
     Serial.println("Final line reached and stopped.");
 }
 
+// Drives the robot forwards until a microswitch is pressed. Then stops the robot
 void driveToWall(int speed, int microSwitchPin) {
     while (true) {
         if (isMicroswitchPressed(microSwitchPin)) {
-            stopRobot();
+            stopRobot2();
             break;
         }
         else {

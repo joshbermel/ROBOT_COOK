@@ -6,11 +6,9 @@
 #include "utilities.h"
 #include "config.h"
 
-int driveSpeed = 500;
-int crawlSpeed = 200;
+int driveSpeed = 150;
 
 bool started = false;
-int speed = 150;
 
 int wallSwitch = microswitch1Pin;
 
@@ -26,16 +24,26 @@ void setup() {
 
 void loop() {
 
-// setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed);
-//     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed);
-//     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed);
-//     setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed);
+// List of functions that need to be tested, in Order:
 
 
+skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, LEFT);
+skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, RIGHT);
+skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, LEFT);
+skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, RIGHT);
 
-// testBothReflectanceSensor(reflectanceSensorLeftPin,reflectanceSensorRightPin);
-// delay(20);
-// leftStop(150,reflectanceSensorLeftPin, reflectanceSensorRightPin);
+skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, LEFT);
+skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, RIGHT);
+skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, LEFT);
+skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, RIGHT);
 
-skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, 100, LEFT);
+driveForward(driveSpeed);
+delay(2000);
+stopRobot2();
+
+rotate180();
+delay(1000);
+rotate180();
+delay(1000);
+
 }
