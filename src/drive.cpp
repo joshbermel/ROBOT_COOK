@@ -5,6 +5,7 @@ void initializeMotorPins() {
     pinMode(backRightMotorPin1, OUTPUT);
     pinMode(backRightMotorPin2, OUTPUT);
     pinMode(backLeftMotorPin1, OUTPUT);
+    // update
     pinMode(backLeftMotorPin2, OUTPUT);
     pinMode(frontRightMotorPin1, OUTPUT);
     pinMode(frontRightMotorPin2, OUTPUT);
