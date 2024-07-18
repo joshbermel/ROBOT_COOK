@@ -114,6 +114,48 @@ void skipLinesAndStop(int leftSensorPin, int rightSensorPin, int linesToSkip, in
     Serial.println("Final line reached and stopped.");
 }
 
+void skipLinesAndStop2(int leftSensorPin, int rightSensorPin, int linesToSkip, int moveSpeed, Direction moveDirection) {
+    int linesSkipped = 0;
+    bool onLine = false;
+
+    while (linesSkipped < linesToSkip) {
+        if (!isOnLine(leftSensorPin, rightSensorPin)) {
+            if (moveDirection == LEFT) {
+                driveLeft(moveSpeed);
+            } else {
+                driveRight(moveSpeed);
+            }
+            onLine = false;  // Update onLine flag when not on line
+        } else {
+            if (!onLine) {
+                linesSkipped++;
+                onLine = true;  // Update onLine flag when on line
+                Serial.print("Line detected. Lines skipped: ");
+                Serial.println(linesSkipped);
+            }
+
+            if (moveDirection == LEFT) {
+                driveLeft(moveSpeed);
+            } else {
+                driveRight(moveSpeed);
+            }
+            delay(200);  // Allow time to move off the current line
+        }
+        delay(50);  // Small delay to allow for sensor reading stabilization
+    }
+
+    // Stop on the final line detected
+    if (moveDirection == LEFT) {
+        leftStop(moveSpeed, leftSensorPin, rightSensorPin);
+    } else {
+        rightStop(moveSpeed, leftSensorPin, rightSensorPin);
+    }
+    delay(50);
+
+    stopRobot();  // Ensure the robot stops
+    Serial.println("Final line reached and stopped.");
+}
+
 void driveToWall(int speed, int microSwitchPin) {
     while (true) {
         if (isMicroswitchPressed(microSwitchPin)) {
