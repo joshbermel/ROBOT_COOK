@@ -27,23 +27,15 @@ void loop() {
 // List of functions that need to be tested, in Order:
 
 
-skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, LEFT);
-skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, RIGHT);
-skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, LEFT);
-skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, RIGHT);
+//skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, LEFT);
+// skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, RIGHT);
+// skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, LEFT);
+// skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, RIGHT);
 
-skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, LEFT);
-skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, RIGHT);
-skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, LEFT);
-skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, RIGHT);
+// skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, LEFT);
+// skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, RIGHT);
+// skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, LEFT);
+// skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, RIGHT);
 
-driveForward(driveSpeed);
-delay(2000);
-stopRobot2();
-
-rotate180();
-delay(1000);
-rotate180();
-delay(1000);
 
 }

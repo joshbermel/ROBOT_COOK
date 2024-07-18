@@ -8,9 +8,7 @@
 // Drives the robot left at a given speed until it is centered on the nearest black line. 
 void leftStop(int speed, int leftSensorPin, int rightSensorPin) {
     while (true) {
-        int leftSensorValue = readReflectanceSensor(leftSensorPin);
-        int rightSensorValue = readReflectanceSensor(rightSensorPin);
-        Direction dir = determineDirection(leftSensorValue, rightSensorValue);
+        Direction dir = determineDirection(leftSensorPin, rightSensorPin);
 
         if (dir == CENTERED) {
             setAllMotorsToZero();
