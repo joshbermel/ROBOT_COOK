@@ -36,6 +36,6 @@ const int reflectanceSensorRightPin = 38;
 // high reflectance is for being centered on the black tape 
 // higher threshold means both sensors must be high
 const int reflectanceThreshold = 2800;
-const int reflectanceDifferenceThreshold = 100;
+const int reflectanceDifferenceThreshold = 400;
 
 #endif // CONFIG_H

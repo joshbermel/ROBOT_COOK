@@ -11,7 +11,7 @@ enum Direction {
 };
 
 void initializeSensorPins();
-int readReflectanceSensor(int pin);
+bool readReflectanceSensor(int pin);
 Direction determineDirection(int leftSensor, int rightSensor);
 bool isOnLine(int leftSensorPin, int rightSensorPin);
 void testBothReflectanceSensor(int leftSensorPin, int rightSensorPin);

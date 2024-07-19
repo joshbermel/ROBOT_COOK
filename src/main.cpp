@@ -10,8 +10,8 @@ int driveSpeed = 150;
 
 bool started = false;
 
-int wallSwitch = microswitch1Pin;
 
+int wallSwitch = microswitch1Pin;
 
 void setup() {
     Serial.begin(115200);
@@ -20,22 +20,11 @@ void setup() {
     initializeServoPins();
     initializeMicroSwitchPins();
     setAllMotorsToZero();
+    
+    // Attach interrupt to the left reflectance sensor pin    
 }
 
 void loop() {
-
-// List of functions that need to be tested, in Order:
-
-
-//skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, LEFT);
-// skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, RIGHT);
-// skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, LEFT);
-// skipLinesAndStop(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, RIGHT);
-
-// skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, LEFT);
-// skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 0, driveSpeed, RIGHT);
-// skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, LEFT);
-// skipLinesAndStop2(reflectanceSensorLeftPin,reflectanceSensorRightPin, 1, driveSpeed, RIGHT);
-
-
+skipLinesAndStop2(reflectanceSensorLeftPin, reflectanceSensorRightPin, 3, 100, LEFT);
+delay(5000);
 }

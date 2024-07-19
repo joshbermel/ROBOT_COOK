@@ -5,54 +5,56 @@
 #include "microswitch.h"
 #include "servos.h"
 
+int tuningSpeed = 40;
+
 // Drives the robot left at a given speed until it is centered on the nearest black line. 
 void leftStop(int speed, int leftSensorPin, int rightSensorPin) {
     while (true) {
         Direction dir = determineDirection(leftSensorPin, rightSensorPin);
-
         if (dir == CENTERED) {
+            driveRight(speed);
+            delay(20);
             setAllMotorsToZero();
             Serial.println("Robot is centered on the line.");
             break;
         } else if (dir == LEFT) {
             Serial.println("Robot needs to move left.");
-            driveLeft(speed*0.3);
+            driveLeft(tuningSpeed);
         } else if (dir == RIGHT) {
             Serial.println("Robot needs to move right.");
-            driveRight(speed*0.3);
-        } else {
+            driveRight(tuningSpeed);
+        } 
+        else {
             Serial.println("Robot is not on the line, moving left.");
             driveLeft(speed);
         }
-        delay(50); // Short delay to prevent overwhelming the motor control
     }
 }
 
 // Drives the robot right at a given speed until it is centered on the nearest black line. 
 void rightStop(int speed, int leftSensorPin, int rightSensorPin) {
     while (true) {
-        int leftSensorValue = readReflectanceSensor(leftSensorPin);
-        int rightSensorValue = readReflectanceSensor(rightSensorPin);
-        Direction dir = determineDirection(leftSensorValue,rightSensorValue);
-
+        Direction dir = determineDirection(leftSensorPin, rightSensorPin);
         if (dir == CENTERED) {
+            driveLeft(speed);
+            delay(20);
             setAllMotorsToZero();
             Serial.println("Robot is centered on the line.");
             break;
         } else if (dir == LEFT) {
-             Serial.println("Robot needs to move left.");
-            driveLeft(speed*0.3);
+            Serial.println("Robot needs to move left.");
+            driveLeft(tuningSpeed);
         } else if (dir == RIGHT) {
             Serial.println("Robot needs to move right.");
-            driveRight(speed*0.3);
-        } else {
+            driveRight(tuningSpeed);
+        } 
+        else {
             Serial.println("Robot is not on the line, moving right.");
             driveRight(speed);
         }
-        delay(20); 
+        delay(5);
     }
 }
-
 // Function for robot to drive backwards, turn around, and drive forward until we reach the other counter. 
 void flipCounters(int speed, int leftSensorPin, int rightSensorPin, int microSwitchPin) {
     // turning around 
@@ -73,7 +75,7 @@ void flipCounters(int speed, int leftSensorPin, int rightSensorPin, int microSwi
     }
 }
 
-// Garbage function. Refer to skipLinesAndStop2()
+// Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line afterwards.
 void skipLinesAndStop(int leftSensorPin, int rightSensorPin, int linesToSkip, int moveSpeed, Direction moveDirection) {
     int linesSkipped = 0;
     bool onLine = false;
@@ -92,44 +94,41 @@ void skipLinesAndStop(int leftSensorPin, int rightSensorPin, int linesToSkip, in
 
         // Move left or right based on the direction parameter
         while (!isOnLine(leftSensorPin, rightSensorPin)) {
-        if (moveDirection == LEFT) {
-            driveLeft(moveSpeed);
-        } else if (moveDirection == RIGHT) {
-            driveRight(moveSpeed);
+            if (moveDirection == LEFT) {
+                driveLeft(moveSpeed);
+            } else if (moveDirection == RIGHT) {
+                driveRight(moveSpeed);
+            }
         }
-        }
-
-        delay(50); // Small delay to allow for sensor reading stabilization
     }
-    // read the first time we get centered, increment the count, check if we are at count limit, if not, delay a small time (until we are off the line), check again for the next line. 
 
     // Stop on the final line detected
-         if (moveDirection == LEFT) {
+    if (moveDirection == LEFT) {
         leftStop(moveSpeed, leftSensorPin, rightSensorPin);
     } else {
         rightStop(moveSpeed, leftSensorPin, rightSensorPin);
     }
-        delay(50);
+    delay(50);
 
     stopRobot();
     Serial.println("Final line reached and stopped.");
 }
 
-// Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line aftwards.
+// Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line afterwards.
 void skipLinesAndStop2(int leftSensorPin, int rightSensorPin, int linesToSkip, int moveSpeed, Direction moveDirection) {
     int linesSkipped = 0;
     bool onLine = false;
 
     while (linesSkipped < linesToSkip) {
-        if (!isOnLine(leftSensorPin, rightSensorPin)) {
+        while (!isOnLine(leftSensorPin, rightSensorPin)) {
             if (moveDirection == LEFT) {
                 driveLeft(moveSpeed);
             } else {
                 driveRight(moveSpeed);
             }
             onLine = false;  // Update onLine flag when not on line
-        } else {
-            if (!onLine) {
+        }
+        if (!onLine) {
                 linesSkipped++;
                 onLine = true;  // Update onLine flag when on line
                 Serial.print("Line detected. Lines skipped: ");
@@ -141,9 +140,7 @@ void skipLinesAndStop2(int leftSensorPin, int rightSensorPin, int linesToSkip, i
             } else {
                 driveRight(moveSpeed);
             }
-            delay(200);  // Allow time to move off the current line
-        }
-        delay(50);  // Small delay to allow for sensor reading stabilization
+            delay(500);  // Allow time to move off the current line
     }
 
     // Stop on the final line detected
@@ -152,9 +149,7 @@ void skipLinesAndStop2(int leftSensorPin, int rightSensorPin, int linesToSkip, i
     } else {
         rightStop(moveSpeed, leftSensorPin, rightSensorPin);
     }
-    delay(50);
-
-    stopRobot();  // Ensure the robot stops
+    setAllMotorsToZero();
     Serial.println("Final line reached and stopped.");
 }
 
@@ -168,6 +163,6 @@ void driveToWall(int speed, int microSwitchPin) {
         else {
             driveForward(speed);
         }
-    delay(20);
+        delay(20);
     }
 }
