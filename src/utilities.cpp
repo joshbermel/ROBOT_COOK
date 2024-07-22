@@ -67,7 +67,7 @@ void flipCounters(int speed, int leftSensorPin, int rightSensorPin, int microSwi
 
     while (true) {
         if (isMicroswitchPressed(microSwitchPin)) {
-        stopRobot();
+        setAllMotorsToZero();
         break;
         }
         else {
