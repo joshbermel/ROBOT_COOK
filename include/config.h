@@ -38,4 +38,7 @@ const int reflectanceSensorRightPin = 38;
 const int reflectanceThreshold = 2800;
 const int reflectanceDifferenceThreshold = 400;
 
+// driving and tuning speeds
+
+
 #endif // CONFIG_H

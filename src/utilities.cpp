@@ -5,6 +5,7 @@
 #include "microswitch.h"
 #include "servos.h"
 
+int driveSpeed = 150;
 int tuningSpeed = 40;
 
 // Drives the robot left at a given speed until it is centered on the nearest black line. 
@@ -55,6 +56,7 @@ void rightStop(int speed, int leftSensorPin, int rightSensorPin) {
         delay(5);
     }
 }
+
 // Function for robot to drive backwards, turn around, and drive forward until we reach the other counter. 
 void flipCounters(int speed, int leftSensorPin, int rightSensorPin, int microSwitchPin) {
     // turning around 
@@ -76,45 +78,7 @@ void flipCounters(int speed, int leftSensorPin, int rightSensorPin, int microSwi
 }
 
 // Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line afterwards.
-void skipLinesAndStop(int leftSensorPin, int rightSensorPin, int linesToSkip, int moveSpeed, Direction moveDirection) {
-    int linesSkipped = 0;
-    bool onLine = false;
-
-    while (linesSkipped < linesToSkip) {
-        if (isOnLine(leftSensorPin, rightSensorPin)) {
-            if (!onLine) {
-                linesSkipped++;
-                onLine = true;
-                Serial.print("Line detected. Lines skipped: ");
-                Serial.println(linesSkipped);
-            }
-        } else {
-            onLine = false;
-        }
-
-        // Move left or right based on the direction parameter
-        while (!isOnLine(leftSensorPin, rightSensorPin)) {
-            if (moveDirection == LEFT) {
-                driveLeft(moveSpeed);
-            } else if (moveDirection == RIGHT) {
-                driveRight(moveSpeed);
-            }
-        }
-    }
-
-    // Stop on the final line detected
-    if (moveDirection == LEFT) {
-        leftStop(moveSpeed, leftSensorPin, rightSensorPin);
-    } else {
-        rightStop(moveSpeed, leftSensorPin, rightSensorPin);
-    }
-    delay(50);
-
-    stopRobot();
-    Serial.println("Final line reached and stopped.");
-}
-
-// Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line afterwards.
+// Ensure that you put a delay after this call. It can be any non zero value (i think)
 void skipLinesAndStop2(int leftSensorPin, int rightSensorPin, int linesToSkip, int moveSpeed, Direction moveDirection) {
     int linesSkipped = 0;
     bool onLine = false;

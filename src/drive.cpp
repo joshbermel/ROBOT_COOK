@@ -32,32 +32,7 @@ void setMotorSpeed(int motorPin1, int motorPin2, bool direction, int speed) {
     }
 }
 
-
-// Garbage Function. See dynamicBrakeMotor2() for improved and functional version
-void dynamicBrakeMotor(int motorPin1, int motorPin2) {
-    int currentSpeed1 = analogRead(motorPin1);
-    int currentSpeed2 = analogRead(motorPin2);
-
-    if (currentSpeed1 > 0) {
-        analogWrite(motorPin1, 0);
-        delay(5);
-        analogWrite(motorPin2, 255);
-        delay(5);
-    } else if (currentSpeed2 > 0) {
-        analogWrite(motorPin1, 255);
-        delay(5);
-        analogWrite(motorPin2, 0);
-        delay(5);
-    }
-
-    delay(50);
-    analogWrite(motorPin1, 0);
-    delay(5);
-    analogWrite(motorPin2, 0);
-    delay(5);
-}
-
-// Dynamically brakes each motor by applying maximum speed in opposite direction of current motion. 
+// Dynamically brakes each motor. DOESNT WORK RIGHT NOW
 void dynamicBrakeMotor2(int motorPin1A, int motorPin1B, int motorPin2A, int motorPin2B, int motorPin3A, int motorPin3B, int motorPin4A, int motorPin4B) {
      
     int currentSpeed1A = analogRead(motorPin1A);
@@ -170,25 +145,7 @@ void rotate180() {
 
     delay(rotateTime);
 
-    // setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, 0);
-    // setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, 0);
-    // setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, 0);
-    // setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, 0);
-
     setAllMotorsToZero();
-}
-
-// Garbage function, see stopRobot2()
-void stopRobot() {
-    dynamicBrakeMotor(frontLeftMotorPin1, frontLeftMotorPin2);
-    dynamicBrakeMotor(frontRightMotorPin1, frontRightMotorPin2);
-    dynamicBrakeMotor(backLeftMotorPin1, backLeftMotorPin2);
-    dynamicBrakeMotor(backRightMotorPin1, backRightMotorPin2);
-}
-
-// Stops the entire robot by applying dynamic braking. Use this function instead of calling dynamicBrakeMotor2() each time.
-void stopRobot2() {
-    dynamicBrakeMotor2(frontLeftMotorPin1, frontLeftMotorPin2, frontRightMotorPin1, frontRightMotorPin2, backLeftMotorPin1, backLeftMotorPin2, backRightMotorPin1, backRightMotorPin1);
 }
 
 // Testing function to drive forwards, stop, drive backwards, stop. 

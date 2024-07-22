@@ -8,9 +8,7 @@
 void leftStop(int speed, int leftSensorPin, int rightSensorPin);
 void rightStop(int speed, int leftSensorPin, int rightSensorPin);
 void flipCounters(int speed, int leftSensorPin, int rightSensorPin, int microSwitchPin);
-void skipLinesAndStop(int leftSensorPin, int rightSensorPin, int linesToSkip, int moveSpeed, Direction moveDirection);
 void driveToWall(int speed, int microSwitchPin);
-void skipLinesAndStop2(int leftSensorPin, int rightSensorPin, int linesToSkip, int moveSpeed, Direction moveDirection);
 void skipLinesAndStop2(int leftSensorPin, int rightSensorPin, int linesToSkip, int moveSpeed, Direction moveDirection);
 
 #endif // UTILITIES_H

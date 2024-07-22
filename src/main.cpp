@@ -6,8 +6,6 @@
 #include "utilities.h"
 #include "config.h"
 
-int driveSpeed = 150;
-
 bool started = false;
 
 
@@ -25,6 +23,10 @@ void setup() {
 }
 
 void loop() {
-skipLinesAndStop2(reflectanceSensorLeftPin, reflectanceSensorRightPin, 3, 100, LEFT);
-delay(5000);
+setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, 255);
+delay(1000);
+setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, 255);
+delay(20);
+setAllMotorsToZero();
+delay(1000);
 }
