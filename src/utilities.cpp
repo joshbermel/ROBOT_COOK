@@ -58,23 +58,34 @@ void rightStop(int speed, int leftSensorPin, int rightSensorPin) {
 }
 
 // Function for robot to drive backwards, turn around, and drive forward until we reach the other counter. 
+// HAS BEEN MODIFIED TO NOT INCLUDE MICROSWITCH INPUT. CAN BE CHANGED IF WE WANT.
 void flipCounters(int speed, int leftSensorPin, int rightSensorPin, int microSwitchPin) {
     // turning around 
     driveBackward(speed);
-    delay(100);
-    stopRobot();
-    rotate180();
+    delay(600);
+    driveForward(255);
+    delay(50);
+    setAllMotorsToZero();
+    rotate180(rotateSpeed, rotateTime);
+    rotate180(-1*rotateSpeed, 50);
+    setAllMotorsToZero();
 
-    while (true) {
-        if (isMicroswitchPressed(microSwitchPin)) {
-        setAllMotorsToZero();
-        break;
-        }
-        else {
-            driveForward(speed);
-        }
-        delay(10);
-    }
+    // while (true) {
+    //     if (isMicroswitchPressed(microSwitchPin)) {
+    //     setAllMotorsToZero();
+    //     break;
+    //     }
+    //     else {
+    //         driveForward(speed);
+    //     }
+    //     delay(10);
+    // }
+
+    driveForward(speed);
+    delay(1200);
+    driveBackward(255);
+    delay(50);
+    setAllMotorsToZero();
 }
 
 // Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line afterwards.

@@ -15,6 +15,9 @@ const int frontRightMotorPin2 = 21;
 const int rotateTime = 500;
 const int rotateSpeed = 100;
 
+// Drive Speed
+int driveSpeed = 150;
+
 // PWM frequency and resolution
 const int pwmFrequency = 10000;
 const int pwmResolution = 10;
@@ -38,7 +41,11 @@ const int reflectanceSensorRightPin = 38;
 const int reflectanceThreshold = 2800;
 const int reflectanceDifferenceThreshold = 400;
 
-// driving and tuning speeds
+// Calibrated Motor Speeds from Testing. Placeholder Values until testing is complete
+int FLSpeedCalibrated = driveSpeed;
+int FRSpeedCalibrated = driveSpeed;
+int BLSpeedCalibrated = driveSpeed;
+int BRSpeedCalibrated = driveSpeed;
 
 
 #endif // CONFIG_H

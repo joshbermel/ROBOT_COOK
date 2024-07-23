@@ -10,14 +10,12 @@ void driveForward(int speed);
 void driveBackward(int speed);
 void driveLeft(int speed);
 void driveRight(int speed);
-void rotate180();
+void rotate180(int rotateSpeed, int rotateTime);
 void stopRobot();
 void testDriveForwardBackward();
 void testDriveLeftRight();
 void testRotate();
 void setAllMotorsToZero();
 void stopRobot2();
-void dynamicBrakeMotor2(int motorPin1A, int motorPin1B, int motorPin2A, int motorPin2B, int motorPin3A, int motorPin3B, int motorPin4A, int motorPin4B);
-
 
 #endif // DRIVE_H
