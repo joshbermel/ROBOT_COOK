@@ -29,8 +29,8 @@ const int microswitch2Pin = 33;
 const int microswitch3Pin = 14;
 
 // Reflectance sensor pins
-const int reflectanceSensorLeftPin = 34;
-const int reflectanceSensorRightPin = 38;
+const int reflectanceSensorLeftPin = 38;
+const int reflectanceSensorRightPin = 34;
 
 // Reflectance comparator thresholds
 // high reflectance is for being centered on the black tape 

@@ -23,10 +23,35 @@ void setup() {
 }
 
 void loop() {
-setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, 255);
-delay(1000);
-setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, 255);
-delay(20);
-setAllMotorsToZero();
-delay(1000);
+// setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, 255);
+// delay(1000);
+// setAllMotorsToZero();
+// delay(1000);
+
+// setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, 255);
+// delay(1000);
+// setAllMotorsToZero();
+// delay(1000);
+
+// setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, 255);
+// delay(1000);
+// setAllMotorsToZero();
+// delay(1000);
+
+// 
+//frontright is actually front left
+//setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, 255);
+// delay(1000);
+// setAllMotorsToZero();
+// delay(1000);
+
+
+// change front right to back left
+// setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, 255);
+// delay(1000);
+// setAllMotorsToZero();
+// delay(1000);
+
+
+testDetermineDirection(reflectanceSensorLeftPin, reflectanceSensorRightPin);
 }
