@@ -23,35 +23,22 @@ void setup() {
 }
 
 void loop() {
-// setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, 255);
-// delay(1000);
+
+// ONCE DONE ALL CALIBRATION AND PIN REARRANGEMENT, RUN THE FOLLOWING TEST:
+// driveForward(driveSpeed);
+// delay(600);
+// driveBackward(255);
+// delay(50);
+
+// skipLinesAndStop2(reflectanceSensorLeftPin, reflectanceSensorRightPin, 0, driveSpeed, RIGHT);
+// delay(10);
+
+// flipCounters(driveSpeed, reflectanceSensorLeftPin, reflectanceSensorRightPin, microswitch1Pin);
+// delay(10);
+// skipLinesAndStop2(reflectanceSensorLeftPin, reflectanceSensorRightPin, 2, driveSpeed, LEFT);
+// delay(10);
+
+
 // setAllMotorsToZero();
-// delay(1000);
 
-// setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, 255);
-// delay(1000);
-// setAllMotorsToZero();
-// delay(1000);
-
-// setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, 255);
-// delay(1000);
-// setAllMotorsToZero();
-// delay(1000);
-
-// 
-//frontright is actually front left
-//setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, 255);
-// delay(1000);
-// setAllMotorsToZero();
-// delay(1000);
-
-
-// change front right to back left
-// setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, 255);
-// delay(1000);
-// setAllMotorsToZero();
-// delay(1000);
-
-
-testDetermineDirection(reflectanceSensorLeftPin, reflectanceSensorRightPin);
 }
