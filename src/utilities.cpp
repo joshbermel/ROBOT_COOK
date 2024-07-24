@@ -5,7 +5,6 @@
 #include "microswitch.h"
 #include "servos.h"
 
-int driveSpeed = 150;
 int tuningSpeed = 40;
 
 // Drives the robot left at a given speed until it is centered on the nearest black line. 
@@ -13,8 +12,8 @@ void leftStop(int speed, int leftSensorPin, int rightSensorPin) {
     while (true) {
         Direction dir = determineDirection(leftSensorPin, rightSensorPin);
         if (dir == CENTERED) {
-            driveRight(speed);
-            delay(20);
+            // driveRight(speed);
+            // delay(20);
             setAllMotorsToZero();
             Serial.println("Robot is centered on the line.");
             break;
@@ -29,6 +28,7 @@ void leftStop(int speed, int leftSensorPin, int rightSensorPin) {
             Serial.println("Robot is not on the line, moving left.");
             driveLeft(speed);
         }
+        delay(5);
     }
 }
 
@@ -37,7 +37,7 @@ void rightStop(int speed, int leftSensorPin, int rightSensorPin) {
     while (true) {
         Direction dir = determineDirection(leftSensorPin, rightSensorPin);
         if (dir == CENTERED) {
-            driveLeft(speed);
+            // driveLeft(speed);
             delay(20);
             setAllMotorsToZero();
             Serial.println("Robot is centered on the line.");

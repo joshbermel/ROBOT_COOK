@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "drive.h"
+#include "config.h"
 
-int driveSpeed = 500;
 
 void setup() {
     Serial.begin(115200);
@@ -46,7 +46,7 @@ void testDriveLeftRight() {
 
 void testRotate() {
     Serial.println("Testing rotate 180...");
-    rotate180();
+    rotate180(driveSpeed, rotateTime);
     delay(1000);
     stopRobot();
     delay(500);

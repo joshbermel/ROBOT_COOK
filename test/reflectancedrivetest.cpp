@@ -3,7 +3,6 @@
 #include "sensors.h"
 #include "config.h"
 
-int driveSpeed = 300;
 int crawlSpeed = 100;
 
 void setup() {
@@ -81,7 +80,7 @@ void testBackwardStop(int speed, int leftSensorPin, int rightSensorPin) {
             if (dir == CENTERED) {
                 stopRobot();
                 Serial.println("Robot is centered on the line, time to rotate");
-                rotate180();
+                rotate180(rotateSpeed, rotateTime);
                 rotating = true;
                 delay(1000);
             } else {

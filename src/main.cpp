@@ -8,6 +8,18 @@
 
 bool started = false;
 
+int driveSpeed = 150;
+
+float FLSpeedCalibrated = 1.4;
+// 144 rotations in 30s
+float FRSpeedCalibrated = 2*144/142;
+// 142 rotations in 30s
+float BLSpeedCalibrated = 1.4;
+// 138 rotations in 30s
+float BRSpeedCalibrated = 1.5;
+// 142 rotations in 30s
+
+
 
 int wallSwitch = microswitch1Pin;
 
@@ -23,7 +35,9 @@ void setup() {
 }
 
 void loop() {
-
+    
+leftStop(100, reflectanceSensorLeftPin, reflectanceSensorRightPin);
+delay(10000);
 // ONCE DONE ALL CALIBRATION AND PIN REARRANGEMENT, RUN THE FOLLOWING TEST:
 // driveForward(driveSpeed);
 // delay(600);
