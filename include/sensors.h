@@ -4,19 +4,21 @@
 #include <Arduino.h>
 
 enum Direction {
-    LEFT,
-    RIGHT,
+    FORWARD,
+    BACKWARD,
     CENTERED,
-    NOT_ON_LINE
+    NOT_ON_LINE,
+    LEFT,
+    RIGHT
 };
 
 void initializeSensorPins();
 bool readReflectanceSensor(int pin);
-Direction determineDirection(int leftSensor, int rightSensor);
-bool isOnLine(int leftSensorPin, int rightSensorPin);
-void testBothReflectanceSensor(int leftSensorPin, int rightSensorPin);
+Direction determineDirection();
+bool isOnLine();
+void testBothReflectanceSensor();
 void testSingleReflectanceSensor(int sensorPin);
-void testDetermineDirection(int leftSensorReading, int rightSensorReading);
-void testIsOnLine(int leftSensorPin, int rightSensorPin);
+void testDetermineDirection();
+void testIsOnLine();
 
 #endif // SENSORS_H

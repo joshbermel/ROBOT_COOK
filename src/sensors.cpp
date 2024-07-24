@@ -3,8 +3,8 @@
 
 // initializing sensor pins to be analog inputs
 void initializeSensorPins() {
-    pinMode(reflectanceSensorLeftPin, INPUT);
-    pinMode(reflectanceSensorRightPin, INPUT);
+    pinMode(frontReflectanceSensor, INPUT);
+    pinMode(backReflectanceSensor, INPUT);
 }
 
 // Reading the analog input from a reflectance sensor pin
@@ -14,62 +14,64 @@ bool readReflectanceSensor(int SensorPin) {
 }
 
 // Testing function to read and Serial print the readings from left and right reflectance sensor pins. 
-void testBothReflectanceSensor(int leftSensorPin, int rightSensorPin) {
+void testBothReflectanceSensor() {
     // return analogRead(pin1);
-    Serial.println("Left Pin Reading:");
-    Serial.println(readReflectanceSensor(leftSensorPin));
+    Serial.println("Front Pin Reading:");
+    Serial.println(readReflectanceSensor(frontReflectanceSensor));
 
-    Serial.println("Right Pin Reading:");
-    Serial.println(readReflectanceSensor(rightSensorPin));
-    delay(50);
+    Serial.println("Back Pin Reading:");
+    Serial.println(readReflectanceSensor(backReflectanceSensor));
+    delay(30);
 }
 
 // Testng function to real and Serial print the reading from a single reflectance sensor pin. 
 void testSingleReflectanceSensor(int sensorPin) {
     // return analogRead(pin1);
     Serial.println(readReflectanceSensor(sensorPin));
-    delay(50);
+    delay(30);
 }
 
 // Determine the direction the robot must move given two reflectance sensor pins. 
 // NOTE: If the relfectance sensors are too far from the competition surface, both will read maximum value and the output will be CENTERED
-Direction determineDirection(int leftSensorPin, int rightSensorPin) {
-    int leftSensorReading = readReflectanceSensor(leftSensorPin);
-    int rightSensorReading = readReflectanceSensor(rightSensorPin);
-    if (leftSensorReading && rightSensorReading) {
+Direction determineDirection() {
+    int frontSensorReading = readReflectanceSensor(frontReflectanceSensor);
+    int backSensorReading = readReflectanceSensor(backReflectanceSensor);
+    if (frontSensorReading && backSensorReading) {
         return CENTERED;
-    } else if (leftSensorReading && !rightSensorReading) {
-        return LEFT;
-    } else if (!leftSensorReading && rightSensorReading) {
-        return RIGHT;
+    } else if (frontSensorReading && !backSensorReading) {
+        return FORWARD;
+    } else if (!frontSensorReading && backSensorReading) {
+        return BACKWARD;
     } else {
         return NOT_ON_LINE;
     }
 }
 
+
 // Testing function for determine direction. Serial prints the corresponding direction that the robot should move. 
-void testDetermineDirection(int leftSensorPin, int rightSensorPin) {
-    int leftSensorReading = readReflectanceSensor(leftSensorPin);
-    int rightSensorReading = readReflectanceSensor(rightSensorPin);
-    if (leftSensorReading && rightSensorReading) {
+void testDetermineDirection() {
+    int frontSensorReading = readReflectanceSensor(frontReflectanceSensor);
+    int backSensorReading = readReflectanceSensor(backReflectanceSensor);
+    if (frontSensorReading && backSensorReading) {
         Serial.println("Centered");
-    } else if (leftSensorReading && !rightSensorReading) {
-        Serial.println("Left");
-    } else if (!leftSensorReading && rightSensorReading) {
-        Serial.println("Right");
+    } else if (frontSensorReading && !backSensorReading) {
+        Serial.println("Forward");
+    } else if (!frontSensorReading && backSensorReading) {
+        Serial.println("Backward");
     } else {
         Serial.println("Not on Line");
     }
+    delay(30);
 }
 
 // Boolean to determine if the reflective sensors are centered on a black line.
-bool isOnLine(int leftSensorPin, int rightSensorPin) {
-    return (readReflectanceSensor(leftSensorPin) && readReflectanceSensor(rightSensorPin));
+bool isOnLine() {
+    return (readReflectanceSensor(frontReflectanceSensor) && readReflectanceSensor(backReflectanceSensor));
 }
 
 // Testing function for isOnLine(). Serial prints the outputs that indicate if the sensors are centered on the line.
-void testIsOnLine(int leftSensorPin, int rightSensorPin) {
-    if (readReflectanceSensor(leftSensorPin) && readReflectanceSensor(rightSensorPin)) {
+void testIsOnLine() {
+    if (readReflectanceSensor(frontReflectanceSensor) && readReflectanceSensor(backReflectanceSensor)) {
         Serial.println("centered");
     }
     else {
