@@ -14,11 +14,11 @@ enum Direction {
 
 void initializeSensorPins();
 bool readReflectanceSensor(int pin);
-Direction determineDirection();
+Direction determineDirection(int frontSensorPin, int backSensorPin);
 bool isOnLine();
 void testBothReflectanceSensor();
 void testSingleReflectanceSensor(int sensorPin);
-void testDetermineDirection();
+void testDetermineDirection(int frontSensorPin, int backSensotPin);
 void testIsOnLine();
 
 #endif // SENSORS_H

@@ -10,14 +10,16 @@ bool started = false;
 
 int driveSpeed = 150;
 
-float FLSpeedCalibrated = 1;
+float FLSpeedCalibrated = 1.3;
 // 144 rotations in 30s
-float FRSpeedCalibrated = 1;
+float FRSpeedCalibrated = 1.2;
 // 142 rotations in 30s
-float BLSpeedCalibrated = 1;
+float BLSpeedCalibrated = 1.5;
 // 138 rotations in 30s
-float BRSpeedCalibrated = 1;
+float BRSpeedCalibrated = 1.3;
 // 142 rotations in 30s
+
+bool frontStopExecuted = false; // Flag to indicate if frontStop has been executed
 
 
 
@@ -36,7 +38,21 @@ void setup() {
 
 void loop() {
 
-setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, 70);
+
+setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, 50);
+delay(1000);
+setAllMotorsToZero();
+delay(1000);
+setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, 50);
+delay(1000);
+setAllMotorsToZero();
+delay(1000);
+
+// setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, 100);
+
+}
+
+
 // ONCE DONE ALL CALIBRATION AND PIN REARRANGEMENT, RUN THE FOLLOWING TEST:
 // driveForward(driveSpeed);
 // delay(600);
@@ -53,5 +69,3 @@ setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, 70);
 
 
 // setAllMotorsToZero();
-
-}

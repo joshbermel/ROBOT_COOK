@@ -33,9 +33,9 @@ void testSingleReflectanceSensor(int sensorPin) {
 
 // Determine the direction the robot must move given two reflectance sensor pins. 
 // NOTE: If the relfectance sensors are too far from the competition surface, both will read maximum value and the output will be CENTERED
-Direction determineDirection() {
-    int frontSensorReading = readReflectanceSensor(frontReflectanceSensor);
-    int backSensorReading = readReflectanceSensor(backReflectanceSensor);
+Direction determineDirection(int frontSensorPin, int BackSensorPin) {
+    int frontSensorReading = readReflectanceSensor(frontSensorPin);
+    int backSensorReading = readReflectanceSensor(BackSensorPin);
     if (frontSensorReading && backSensorReading) {
         return CENTERED;
     } else if (frontSensorReading && !backSensorReading) {
@@ -49,9 +49,9 @@ Direction determineDirection() {
 
 
 // Testing function for determine direction. Serial prints the corresponding direction that the robot should move. 
-void testDetermineDirection() {
-    int frontSensorReading = readReflectanceSensor(frontReflectanceSensor);
-    int backSensorReading = readReflectanceSensor(backReflectanceSensor);
+void testDetermineDirection( int frontSensorPin, int backSensorPin) {
+    int frontSensorReading = readReflectanceSensor(frontSensorPin);
+    int backSensorReading = readReflectanceSensor(backSensorPin);
     if (frontSensorReading && backSensorReading) {
         Serial.println("Centered");
     } else if (frontSensorReading && !backSensorReading) {

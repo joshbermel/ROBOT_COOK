@@ -5,8 +5,8 @@
 #include <ESP32Servo.h>
 #include "sensors.h"
 
-void frontStop(int speed);
-void backStop(int speed);
+void frontStop(int speed, int frontsensorpin, int backsensorpin);
+void backStop(int speed, int frontsensorpin, int backsensorpin);
 void flipCounters(int speed, int microSwitchPin);
 void driveToWall(int speed, int microSwitchPin);
 void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection);

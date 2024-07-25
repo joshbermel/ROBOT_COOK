@@ -1,6 +1,8 @@
 #include "drive.h"
 #include "config.h"
 
+int BRWheelTime = 0;
+
 
 // Initialize each motor pin as an output
 void initializeMotorPins() {
@@ -20,51 +22,51 @@ void initializeMotorPins() {
 // Set a wheel to a given speed. A "true" direction means forwards. Controls via both motor pins attached to each wheel.
 void setMotorSpeed(int motorPin1, int motorPin2, bool direction, float speed) {
     if (direction) {
-        analogWrite(motorPin1, round(speed));
-        // delay(1);
+        analogWrite(motorPin1, speed);
+        delay(1);
         analogWrite(motorPin2, 0);
-        // delay(1);
+        delay(1);
     } else {
         analogWrite(motorPin1, 0);
-        // delay(1);
-        analogWrite(motorPin2, round(speed));
-        // delay(1);
+        delay(1);
+        analogWrite(motorPin2, speed);
+        delay(1);
     }
 }
 
    
 // Sets all wheels to spin forwards at a given speed
 void driveForward(int speed) {
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated );
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated);
-    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
 }
 
 // Sets all wheels to spin backwards at a given speed
 void driveBackward(int speed) {
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated);
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated);
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated);
-    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated);
 }
 
 // Turns the front right and back left wheels forwards, and front left and back right wheels backwards. Direct left linear motion.
 // Setting wheels to the adjust speed allows purposeful drift (helpful for keeping robot pressed against the wall)
 void driveLeft(int speed) {
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated);
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated);
-    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated);
 }
 
 // Turns the front left and back right wheels forwards, and front right and back left wheels backwards. Direct right linear motion.
 // Setting wheels to the adjust speed allows purposeful drift (helpful for keeping robot pressed against the wall)
 void driveRight(int speed) {
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated);
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated);
-    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
 }
 
 // Sets left side wheels forwards, and right side wheels backwards. Induces an on-the-spot 180 degree clockwise rotation.
@@ -73,10 +75,11 @@ void rotate180(int rotateSpeed, int rotateTime) {
     bool direction = rotateSpeed > 0;
     Serial.println(direction ? "Rotating CW" : "Rotating CCW");
 
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, !direction, rotateSpeed * BRSpeedCalibrated);
+    delay(BRWheelTime);
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, direction, rotateSpeed * FLSpeedCalibrated);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, !direction, rotateSpeed * FRSpeedCalibrated);
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, direction, rotateSpeed * BLSpeedCalibrated);
-    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, !direction, rotateSpeed * BRSpeedCalibrated);
 
     delay(rotateTime);
     setAllMotorsToZero();

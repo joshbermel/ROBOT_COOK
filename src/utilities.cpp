@@ -5,7 +5,7 @@
 #include "microswitch.h"
 #include "servos.h"
 
-int tuningSpeed = 50;
+int tuningSpeed = 40;
 
 // Function for robot to drive backwards, turn around, and drive forward until we reach the other counter. 
 // HAS BEEN MODIFIED TO NOT INCLUDE MICROSWITCH INPUT. CAN BE CHANGED IF WE WANT.
@@ -52,14 +52,13 @@ void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection) 
             } else {
                 driveBackward(moveSpeed);
             }
-            delay(200);  // Allow time to move off the current line
     }
 
     // Stop on the final line detected
     if (moveDirection == FORWARD) {
-        frontStop(moveSpeed);
+        frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor);
     } else {
-        backStop(moveSpeed);
+        backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor);
     }
     setAllMotorsToZero();
     Serial.println("Final line reached and stopped.");
@@ -79,28 +78,38 @@ void driveToWall(int speed, int microSwitchPin) {
     }
 }
 
-void frontStop(int speed) {
+void frontStop(int speed, int frontSensorPin, int rightSensorPin) {
     while (true) {
-        Direction dir = determineDirection();
+        Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
         if (dir == CENTERED) {
-            driveBackward(speed);
-            delay(20);
             setAllMotorsToZero();
+            delay(20);
+            driveBackward(speed);
+            delay(30);
+            setAllMotorsToZero();
+            Serial.println("Robot is centered on the line.");
             break;
-        } else if (dir == BACKWARD) {
-            driveBackward(tuningSpeed);
-        } else if (dir == FORWARD) {
-            driveForward(tuningSpeed);
+        // } else if (dir == FORWARD) {
+        //     Serial.println("Robot needs to move left.");
+        //     driveForward(tuningSpeed);
+        // } else if (dir == BACKWARD) {
+        //     Serial.println("Robot needs to move right.");
+        //     driveBackward(tuningSpeed);
+        
+        // 
         } 
         else {
+            Serial.println("Robot is not on the line, moving forward");
             driveForward(speed);
         }
+        delay(5);
     }
+    setAllMotorsToZero();
 }
 
-void backStop(int speed) {
+void backStop(int speed, int frontSensorPin, int backSensorPin) {
     while (true) {
-        Direction dir = determineDirection();
+        Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
         if (dir == CENTERED) {
             driveForward(speed);
             delay(20);
