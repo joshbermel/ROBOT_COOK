@@ -17,5 +17,6 @@ void testDriveLeftRight();
 void testRotate();
 void setAllMotorsToZero();
 void stopRobot2();
+void reversingBrake(int speed);
 
 #endif // DRIVE_H

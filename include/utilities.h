@@ -7,7 +7,7 @@
 
 void frontStop(int speed, int frontsensorpin, int backsensorpin);
 void backStop(int speed, int frontsensorpin, int backsensorpin);
-void flipCounters(int speed, int microSwitchPin);
+void flipCounters();
 void driveToWall(int speed, int microSwitchPin);
 void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection);
 

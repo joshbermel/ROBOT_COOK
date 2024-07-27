@@ -10,20 +10,19 @@ bool started = false;
 
 int driveSpeed = 150;
 
-float FLSpeedCalibrated = 1.3;
+float FLSpeedCalibrated = 1.1;
 // 144 rotations in 30s
-float FRSpeedCalibrated = 1.2;
+float FRSpeedCalibrated = 1.1;
 // 142 rotations in 30s
-float BLSpeedCalibrated = 1.5;
+float BLSpeedCalibrated = 1.02;
 // 138 rotations in 30s
 float BRSpeedCalibrated = 1.3;
 // 142 rotations in 30s
 
 bool frontStopExecuted = false; // Flag to indicate if frontStop has been executed
 
-
-
 int wallSwitch = microswitch1Pin;
+
 
 void setup() {
     Serial.begin(115200);
@@ -32,24 +31,14 @@ void setup() {
     initializeServoPins();
     initializeMicroSwitchPins();
     setAllMotorsToZero();
-    
-    // Attach interrupt to the left reflectance sensor pin    
 }
-
 void loop() {
 
+// frontStop(50, frontReflectanceSensor, backReflectanceSensor);
+// delay(5000);
 
-setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, 50);
-delay(1000);
-setAllMotorsToZero();
-delay(1000);
-setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, 50);
-delay(1000);
-setAllMotorsToZero();
-delay(1000);
-
-// setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, 100);
-
+testBothReflectanceSensor();
+delay(30);
 }
 
 
@@ -69,3 +58,4 @@ delay(1000);
 
 
 // setAllMotorsToZero();
+;

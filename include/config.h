@@ -2,14 +2,15 @@
 #define CONFIG_H
 
 // Motor pins
-const int backLeftMotorPin1 = 12;
-const int backLeftMotorPin2 = 13;
-const int frontRightMotorPin1 = 20;
-const int frontRightMotorPin2 = 21;
-const int backRightMotorPin1 = 33;
-const int backRightMotorPin2 = 32;
+const int backLeftMotorPin1 = 33;
+const int backLeftMotorPin2 = 32;
+const int frontRightMotorPin1 = 21;
+const int frontRightMotorPin2 = 20;
+const int backRightMotorPin1 = 13;
+const int backRightMotorPin2 = 12;
 const int frontLeftMotorPin1 = 14;
 const int frontLeftMotorPin2 = 27;
+
 
 // Rotate time and speed
 const int rotateTime = 500;
@@ -37,7 +38,7 @@ const int backReflectanceSensor = 38;
 // Reflectance comparator thresholds
 // high reflectance is for being centered on the black tape 
 // higher threshold means both sensors must be high
-const int reflectanceThreshold = 2800;
+const int reflectanceThreshold = 4000;
 const int reflectanceDifferenceThreshold = 400;
 
 // Calibrated Motor Speeds from Testing. Placeholder Values until testing is complete

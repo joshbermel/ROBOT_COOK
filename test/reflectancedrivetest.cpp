@@ -13,11 +13,11 @@ void setup() {
 }
 
 void loop() {
-    testLeftStop(driveSpeed, reflectanceSensorLeftPin, reflectanceSensorRightPin);
+    // testLeftStop(driveSpeed, frontReflectanceSensor, reflectanceSensorRightPin);
     delay(4000);
-    testRightStop(driveSpeed, reflectanceSensorLeftPin, reflectanceSensorRightPin);
+    // testRightStop(driveSpeed, reflectanceSensorLeftPin, reflectanceSensorRightPin);
     delay(4000);
-    testBackwardStop(driveSpeed, reflectanceSensorLeftPin, reflectanceSensorRightPin);
+    // testBackwardStop(driveSpeed, reflectanceSensorLeftPin, reflectanceSensorRightPin);
     delay(4000);
 }
 

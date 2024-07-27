@@ -9,20 +9,18 @@ int tuningSpeed = 40;
 
 // Function for robot to drive backwards, turn around, and drive forward until we reach the other counter. 
 // HAS BEEN MODIFIED TO NOT INCLUDE MICROSWITCH INPUT. CAN BE CHANGED IF WE WANT.
-void flipCounters(int speed, int microSwitchPin) {
+void flipCounters() {
     // turning around 
-    driveRight(speed);
-    delay(400);
+    driveRight(50);
+    delay(500);
     setAllMotorsToZero();
-    delay(50);
-    rotate180(100, 500);
+    delay(200);
+    rotate180(115, 430);
     setAllMotorsToZero();
-    delay(50);
-    driveLeft(speed);
-    delay(400);
+    delay(300);
+    driveLeft(50);
+    delay(500);
     setAllMotorsToZero();
-    delay(50);
-
 }
 
 // Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line afterwards.
@@ -60,6 +58,7 @@ void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection) 
     } else {
         backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor);
     }
+    delay(20);
     setAllMotorsToZero();
     Serial.println("Final line reached and stopped.");
 }
@@ -79,15 +78,11 @@ void driveToWall(int speed, int microSwitchPin) {
 }
 
 void frontStop(int speed, int frontSensorPin, int rightSensorPin) {
+    driveForward(speed);
     while (true) {
         Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
-        if (dir == CENTERED) {
-            setAllMotorsToZero();
-            delay(20);
-            driveBackward(speed);
-            delay(30);
-            setAllMotorsToZero();
-            Serial.println("Robot is centered on the line.");
+        testBothReflectanceSensor();
+        if (dir == FORWARD || dir == CENTERED) {
             break;
         // } else if (dir == FORWARD) {
         //     Serial.println("Robot needs to move left.");
@@ -98,30 +93,25 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin) {
         
         // 
         } 
-        else {
-            Serial.println("Robot is not on the line, moving forward");
-            driveForward(speed);
-        }
-        delay(5);
     }
+    delay(5);
     setAllMotorsToZero();
 }
 
 void backStop(int speed, int frontSensorPin, int backSensorPin) {
+    driveBackward(speed);
     while (true) {
         Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
-        if (dir == CENTERED) {
-            driveForward(speed);
-            delay(20);
-            setAllMotorsToZero();
+        testBothReflectanceSensor();
+        if (dir == CENTERED || dir == BACKWARD) {
             break;
-        } else if (dir == BACKWARD) {
-            driveBackward(tuningSpeed);
-        } else if (dir == FORWARD) {
-            driveForward(tuningSpeed);
-        } 
-        else {
-            driveBackward(speed);
         }
+        // else if (dir == BACKWARD) {
+        //     driveBackward(tuningSpeed);
+        // } else if (dir == FORWARD) {
+        //     driveForward(tuningSpeed);
+        // } 
     }
+    delay(5);
+    setAllMotorsToZero();
 }

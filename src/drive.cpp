@@ -16,7 +16,7 @@ void initializeMotorPins() {
     pinMode(frontLeftMotorPin2, OUTPUT);
 
     // setting the analog write frequency to 100 Hz
-    analogWriteFrequency(500);
+    analogWriteFrequency(100);
 }
 
 // Set a wheel to a given speed. A "true" direction means forwards. Controls via both motor pins attached to each wheel.
@@ -41,6 +41,45 @@ void driveForward(int speed) {
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated );
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated);
+}
+// void reversingBrake(int speed) {
+//     setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
+//     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated );
+//     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
+//     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated);
+// }
+
+void reversingBrake(int speed) {
+    unsigned long startTime = millis();
+    unsigned long durationBR = 25; // Duration for back right motor
+    unsigned long durationFL = 15;  // Duration for front left motor
+    unsigned long durationFR = 15;  // Duration for front right motor
+    unsigned long durationBL = 15;  // Duration for back left motor
+
+    // Start all motors
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated * 1.1);
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated * 1.1);
+
+    // Loop until all motors have been stopped
+    while (millis() - startTime < durationBR || millis() - startTime < durationFL || millis() - startTime < durationFR || millis() - startTime < durationBL) {
+        unsigned long elapsedTime = millis() - startTime;
+
+        // Stop each motor at the appropriate time
+        if (elapsedTime >= durationBR) {
+            setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, 0);
+        }
+        if (elapsedTime >= durationFL) {
+            setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, 0);
+        }
+        if (elapsedTime >= durationFR) {
+            setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, 0);
+        }
+        if (elapsedTime >= durationBL) {
+            setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, 0);
+        }
+    }
 }
 
 // Sets all wheels to spin backwards at a given speed
