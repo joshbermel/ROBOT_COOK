@@ -12,11 +12,11 @@ int driveSpeed = 150;
 
 float FLSpeedCalibrated = 1.1;
 // 144 rotations in 30s
-float FRSpeedCalibrated = 1.1;
+float FRSpeedCalibrated = 1.2;
 // 142 rotations in 30s
 float BLSpeedCalibrated = 1.02;
 // 138 rotations in 30s
-float BRSpeedCalibrated = 1.3;
+float BRSpeedCalibrated = 1.4;
 // 142 rotations in 30s
 
 bool frontStopExecuted = false; // Flag to indicate if frontStop has been executed
@@ -37,8 +37,12 @@ void loop() {
 // frontStop(50, frontReflectanceSensor, backReflectanceSensor);
 // delay(5000);
 
-testBothReflectanceSensor();
-delay(30);
+frontStop(40, frontReflectanceSensor, backReflectanceSensor);
+delay(3000);
+
+// skipLinesAndStop2(1, 50, FORWARD);
+// delay(3000);
+
 }
 
 

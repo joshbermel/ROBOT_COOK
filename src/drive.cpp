@@ -126,12 +126,12 @@ void rotate180(int rotateSpeed, int rotateTime) {
 
 // Testing function to drive forwards, stop, drive backwards, stop. 
 void testDriveForwardBackward() {
-    driveForward(255);
+    driveForward(50);
     delay(1000);
     setAllMotorsToZero();
     delay(500);
 
-    driveBackward(255);
+    driveBackward(50);
     delay(1000);
     setAllMotorsToZero();
     delay(500);

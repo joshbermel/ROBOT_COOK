@@ -38,7 +38,7 @@ const int backReflectanceSensor = 38;
 // Reflectance comparator thresholds
 // high reflectance is for being centered on the black tape 
 // higher threshold means both sensors must be high
-const int reflectanceThreshold = 4000;
+const int reflectanceThreshold = 2800;
 const int reflectanceDifferenceThreshold = 400;
 
 // Calibrated Motor Speeds from Testing. Placeholder Values until testing is complete

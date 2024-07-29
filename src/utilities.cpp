@@ -84,18 +84,24 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin) {
         testBothReflectanceSensor();
         if (dir == FORWARD || dir == CENTERED) {
             break;
-        // } else if (dir == FORWARD) {
-        //     Serial.println("Robot needs to move left.");
-        //     driveForward(tuningSpeed);
-        // } else if (dir == BACKWARD) {
-        //     Serial.println("Robot needs to move right.");
-        //     driveBackward(tuningSpeed);
-        
-        // 
         } 
     }
-    delay(5);
+    delay(10);
     setAllMotorsToZero();
+    delay(1000);
+    driveBackward(speed * 0.4);
+    while (true) {
+        Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
+        if (dir != NOT_ON_LINE) {
+            break;
+        }
+    }
+    delay(10);
+    setAllMotorsToZero();
+    delay(5000);
+    // driveBackward(30);
+    // delay(100);
+    // setAllMotorsToZero();
 }
 
 void backStop(int speed, int frontSensorPin, int backSensorPin) {
