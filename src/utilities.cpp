@@ -33,16 +33,18 @@ void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection) 
         while (!isOnLine()) {
             if (moveDirection == FORWARD) {
                 driveForward(moveSpeed);
+                delay(50);
             } else {
                 driveBackward(moveSpeed);
+                delay(50);
             }
             onLine = false;  // Update onLine flag when not on line
         }
         if (!onLine) {
                 linesSkipped++;
                 onLine = true;  // Update onLine flag when on line
-                Serial.print("Line detected. Lines skipped: ");
-                Serial.println(linesSkipped);
+                // Serial.print("Line detected. Lines skipped: ");
+                // Serial.println(linesSkipped);
             }
 
             if (moveDirection == FORWARD) {
@@ -58,9 +60,8 @@ void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection) 
     } else {
         backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor);
     }
-    delay(20);
-    setAllMotorsToZero();
-    Serial.println("Final line reached and stopped.");
+    delay(100);
+    // Serial.println("Final line reached and stopped.");
 }
 
 // Drives the robot forwards until a microswitch is pressed. Then stops the robot
@@ -86,17 +87,16 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin) {
             break;
         } 
     }
-    delay(10);
     setAllMotorsToZero();
     delay(1000);
-    driveBackward(speed * 0.4);
+    driveBackward(speed * 0.25);
     while (true) {
         Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
         if (dir != NOT_ON_LINE) {
             break;
         }
     }
-    delay(10);
+    delay(50);
     setAllMotorsToZero();
     delay(5000);
     // driveBackward(30);
