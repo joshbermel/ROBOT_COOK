@@ -5,10 +5,11 @@
 #include <ESP32Servo.h>
 #include "sensors.h"
 
-void frontStop(int speed, int frontsensorpin, int backsensorpin, int ReverseTime);
-void backStop(int speed, int frontsensorpin, int backsensorpin);
+void frontStop(int speed, int frontsensorpin, int backsensorpin, int reverseTime);
+void backStop(int speed, int frontsensorpin, int backsensorpin, int forwardTime);
 void flipCounters();
 void driveToWall(int speed, int microSwitchPin);
-void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection, int reverseTime);
+void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, int changeTime);
+
 
 #endif // UTILITIES_H

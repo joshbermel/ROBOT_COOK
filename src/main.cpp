@@ -34,7 +34,7 @@ void setup() {
 }
 void loop() {
 
-skipLinesAndStop2(1, 32, FORWARD, 150);
+backStop(35, frontReflectanceSensor, backReflectanceSensor, 150);
 delay(3000);
 // flipCounters();
 // delay(2000);

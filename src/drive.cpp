@@ -1,8 +1,6 @@
 #include "drive.h"
 #include "config.h"
 
-int BRWheelTime = 0;
-
 
 // Initialize each motor pin as an output
 void initializeMotorPins() {
@@ -23,17 +21,12 @@ void initializeMotorPins() {
 void setMotorSpeed(int motorPin1, int motorPin2, bool direction, float speed) {
     if (direction) {
         analogWrite(motorPin2, 0);
-        // delay(5);
         analogWrite(motorPin1, round(speed));
-        // delay(5);
     } else {
         analogWrite(motorPin1, 0);
-        // delay(5);
         analogWrite(motorPin2, round(speed));
-        // delay(5);
     }
 }
-
    
 // Sets all wheels to spin forwards at a given speed
 void driveForward(int speed) {
@@ -42,48 +35,25 @@ void driveForward(int speed) {
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated);
 }
-// void reversingBrake(int speed) {
-//     setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
-//     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated );
-//     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
-//     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated);
-// }
 
-void reversingBrake(int speed) {
-    unsigned long startTime = millis();
-    unsigned long durationBR = 0; // Duration for back right motor
-    unsigned long durationFL = 15;  // Duration for front left motor
-    unsigned long durationFR = 15;  // Duration for front right motor
-    unsigned long durationBL = 15;  // Duration for back left motor
-
-    // Start all motors
+// Used to change direction to land on tape. Should be used to slam robot forwards temporarily.
+// REQUIRES TUNING TO BE IMPLEMENTED
+void reverseForward(int speed) {
     setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
-    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated);
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated );
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated);
-
-    // Loop until all motors have been stopped
-    while (millis() - startTime < durationBR || millis() - startTime < durationFL || millis() - startTime < durationFR || millis() - startTime < durationBL) {
-        unsigned long elapsedTime = millis() - startTime;
-
-        // Stop each motor at the appropriate time
-        if (elapsedTime >= durationBR) {
-            setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, 0);
-        }
-        if (elapsedTime >= durationFL) {
-            setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, 0);
-        }
-        if (elapsedTime >= durationFR) {
-            setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, 0);
-        }
-        if (elapsedTime >= durationBL) {
-            setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, 0);
-        }
-    }
 }
 
 // Sets all wheels to spin backwards at a given speed
 void driveBackward(int speed) {
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated );
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated);
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated);
+}
+
+void reverseBackward(int speed) {
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated );
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated);
@@ -115,7 +85,6 @@ void rotate180(int rotateSpeed, int rotateTime) {
     Serial.println(direction ? "Rotating CW" : "Rotating CCW");
 
     setMotorSpeed(backRightMotorPin1, backRightMotorPin2, !direction, rotateSpeed * BRSpeedCalibrated);
-    delay(BRWheelTime);
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, direction, rotateSpeed * FLSpeedCalibrated);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, !direction, rotateSpeed * FRSpeedCalibrated);
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, direction, rotateSpeed * BLSpeedCalibrated);
@@ -163,25 +132,11 @@ void testRotate() {
 // Sets all motors to zero speed, stopping the robot. Can be used as an alternative to stopRobot2() if dynamic braking is not required. 
 void setAllMotorsToZero() {
     analogWrite(backRightMotorPin1, 0);
-    delay(1);
     analogWrite(backRightMotorPin2, 0);
-        delay(1);
-
     analogWrite(backLeftMotorPin1, 0);
-        delay(1);
     analogWrite(backLeftMotorPin2, 0);
-        delay(1);
-
     analogWrite(frontRightMotorPin1, 0);
-        delay(1);
-
     analogWrite(frontRightMotorPin2, 0);
-        delay(1);
-
     analogWrite(frontLeftMotorPin1, 0);
-        delay(1);
-
     analogWrite(frontLeftMotorPin2, 0);
-        delay(1);
-
 }

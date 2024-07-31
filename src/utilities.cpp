@@ -25,7 +25,7 @@ void flipCounters() {
 
 // Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line afterwards.
 // Ensure that you put a delay after this call. It can be any non zero value (i think)
-void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection, int reverseTime) {
+void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, int changeTime) {
     int linesSkipped = 0;
     bool onLine = false;
 
@@ -58,14 +58,15 @@ void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection, 
     // delay(300);
     // Stop on the final line detected
     if (moveDirection == FORWARD) {
-        frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, reverseTime);
+        frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, changeTime);
     } else {
-        backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor);
+        backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, changeTime);
     }
     
 }
 
-// Drives the robot forwards until a microswitch is pressed. Then stops the robot
+// Drives the robot forwards until a microswitch is pressed. Then stops the robot.
+// This is if we are using a microswitch.
 void driveToWall(int speed, int microSwitchPin) {
     while (true) {
         if (isMicroswitchPressed(microSwitchPin)) {
@@ -79,12 +80,13 @@ void driveToWall(int speed, int microSwitchPin) {
     }
 }
 
+
+
 void frontStop(int speed, int frontSensorPin, int rightSensorPin, int reverseTime) {
     driveForward(speed);
     delay(300);
     while (true) {
         Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
-        testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
         if (dir != NOT_ON_LINE) {
             break;
         } 
@@ -94,25 +96,26 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin, int reverseTim
     delay(200);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed);
     delay(20);
-    driveBackward(40);
-    delay(150);
+    reverseBackward(40);
+    delay(reverseTime);
     setAllMotorsToZero();    
 }
 
-void backStop(int speed, int frontSensorPin, int backSensorPin) {
+void backStop(int speed, int frontSensorPin, int backSensorPin, int forwardTime) {
     driveBackward(speed);
+    delay(300);
     while (true) {
         Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
-        testBothReflectanceSensor();
-        if (dir == CENTERED || dir == BACKWARD) {
+        if (dir != NOT_ON_LINE) {
             break;
         }
-        // else if (dir == BACKWARD) {
-        //     driveBackward(tuningSpeed);
-        // } else if (dir == FORWARD) {
-        //     driveForward(tuningSpeed);
-        // } 
     }
-    delay(5);
+    delay(10);
+    setAllMotorsToZero();
+    delay(200);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed);
+    delay(20);
+    reverseForward(40);
+    delay(forwardTime);
     setAllMotorsToZero();
 }
