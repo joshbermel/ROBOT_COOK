@@ -30,9 +30,7 @@ const int servo3Pin = 5;
 const int servo4Pin = 15;
 
 // Microswitch sensor pins
-const int microswitch1Pin = 32;
-const int microswitch2Pin = 33;
-const int microswitch3Pin = 14;
+const int microswitch1Pin = 19;
 
 const int frontReflectanceSensor = 34;
 const int backReflectanceSensor = 38;

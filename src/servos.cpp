@@ -42,3 +42,32 @@ void pickupItem(ServoControl &servoControl, ServoControl &servoControl2) {
 void dropItem(ServoControl &servoContrl, ServoControl &servoControl2) {
     // this function will drop an item by setting servo angles
 }
+
+void test4Servos() {
+    
+    // Set all servos to 110 degrees
+    setServoAngle(servo1Control, 110);
+    delay(1000);
+
+    setServoAngle(servo2Control, 110);
+    delay(1000);
+
+    setServoAngle(servo3Control, 110);
+    delay(1000);
+
+    setServoAngle(servo4Control, 110);
+    delay(1000);
+
+    // Rotate all servos back to 0 degrees
+    setServoAngle(servo1Control, 0);
+    delay(1000);
+
+     setServoAngle(servo2Control, 0);
+    delay(1000);
+
+     setServoAngle(servo3Control, 0);
+    delay(1000);
+
+     setServoAngle(servo4Control, 0);
+    delay(1000);
+}

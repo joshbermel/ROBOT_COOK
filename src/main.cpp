@@ -10,12 +10,11 @@ bool started = false;
 
 int driveSpeed = 150;
 
+// Wheel Calibrations Depending on Motor Strength.
 float FLSpeedCalibrated = 1.1;
 float FRSpeedCalibrated = 1.2;
 float BLSpeedCalibrated = 1.02;
 float BRSpeedCalibrated = 1.3;
-
-float Sto2reverseTime = 150;
 
 // reverse time from buns to cutting board (placing bottom bun)
 float StoBreverseTime = 260;
@@ -43,31 +42,3 @@ delay(3000);
 runThroughCourse();
 
 }
-
-//SERVO TESTING
-
-// setServoAngle(servo1Control, 110);
-//     delay(1000); // Wait for 1 second
-
-//    setServoAngle(servo2Control, 110);
-//     delay(1000); // Wait for 1 second
-
-//     setServoAngle(servo3Control, 110);
-//     delay(1000); // Wait for 1 second\
-
-//     setServoAngle(servo4Control, 110);
-//     delay(1000);
-
-//     // Rotate servo1Control back to 0 degrees
-//     setServoAngle(servo1Control, 0);
-//     delay(1000); // Wait for 1 second
-
-//      setServoAngle(servo2Control, 0);
-//     delay(1000); // Wait for 1 second
-
-//      setServoAngle(servo3Control, 0);
-//     delay(1000); // Wait for 1 second
-
-//      setServoAngle(servo4Control, 0);
-//     delay(1000); // Wait for 1 second
-;
