@@ -3,15 +3,23 @@
 
 ServoControl servo1Control;
 ServoControl servo2Control;
+ServoControl servo3Control;
+ServoControl servo4Control;
 
 // Initialize servo pins, and write to them to go to and 90 degree angle. 
 void initializeServoPins() {
     servo1Control.servo.attach(servo1Pin);
     servo2Control.servo.attach(servo2Pin);
+    servo3Control.servo.attach(servo3Pin);
+    servo4Control.servo.attach(servo4Pin);
     servo1Control.currentAngle = 90;
     servo2Control.currentAngle = 90;
+    servo3Control.currentAngle = 90;
+    servo4Control.currentAngle = 90;
     servo1Control.servo.write(servo1Control.currentAngle);
     servo2Control.servo.write(servo2Control.currentAngle);
+    servo3Control.servo.write(servo3Control.currentAngle);
+    servo4Control.servo.write(servo4Control.currentAngle);
 }
 
 // Sets a servo to a given angle argument.

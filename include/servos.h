@@ -11,6 +11,8 @@ struct ServoControl {
 
 extern ServoControl servo1Control;
 extern ServoControl servo2Control;
+extern ServoControl servo3Control;
+extern ServoControl servo4Control;
 
 void initializeServoPins();
 void setServoAngle(ServoControl &servoControl, int angle);

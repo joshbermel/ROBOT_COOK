@@ -35,18 +35,48 @@ void setup() {
 void loop() {
 
 // frontStop(50, frontReflectanceSensor, backReflectanceSensor);
-// delay(5000);
+// delay(3000);
+// flipCounters();
+// delay(2000);
+
+// testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
 
 // frontStop(40, frontReflectanceSensor, backReflectanceSensor);
 // delay(3000);
 
-// driveBackward(50);
-// delay(100);
+// driveForward(50);
+// delay(500);
 
-frontStop(50, frontReflectanceSensor, backReflectanceSensor);
-delay(1000);
-flipCounters();
-delay(1000);
+setServoAngle(servo1Control, 110);
+    delay(1000); // Wait for 1 second
+
+   setServoAngle(servo2Control, 110);
+    delay(1000); // Wait for 1 second
+
+    setServoAngle(servo3Control, 110);
+    delay(1000); // Wait for 1 second\
+
+    setServoAngle(servo4Control, 110);
+    delay(1000);
+
+    // Rotate servo1Control back to 0 degrees
+    setServoAngle(servo1Control, 0);
+    delay(1000); // Wait for 1 second
+
+     setServoAngle(servo2Control, 0);
+    delay(1000); // Wait for 1 second
+
+     setServoAngle(servo3Control, 0);
+    delay(1000); // Wait for 1 second
+
+     setServoAngle(servo4Control, 0);
+    delay(1000); // Wait for 1 second
+
+
+
+
+
+
 
 }
 

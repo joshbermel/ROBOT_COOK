@@ -19,7 +19,7 @@ void flipCounters() {
     setAllMotorsToZero();
     delay(300);
     driveLeft(50);
-    delay(500);
+    delay(350);
     setAllMotorsToZero();
 }
 
@@ -33,10 +33,10 @@ void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection) 
         while (!isOnLine()) {
             if (moveDirection == FORWARD) {
                 driveForward(moveSpeed);
-                delay(50);
+                // delay(50);
             } else {
                 driveBackward(moveSpeed);
-                delay(50);
+                // delay(50);
             }
             onLine = false;  // Update onLine flag when not on line
         }
@@ -53,14 +53,14 @@ void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection) 
                 driveBackward(moveSpeed);
             }
     }
-
+    delay(600);
     // Stop on the final line detected
     if (moveDirection == FORWARD) {
         frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor);
     } else {
         backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor);
     }
-    delay(100);
+    // delay(100);
     // Serial.println("Final line reached and stopped.");
 }
 
@@ -80,25 +80,33 @@ void driveToWall(int speed, int microSwitchPin) {
 
 void frontStop(int speed, int frontSensorPin, int rightSensorPin) {
     driveForward(speed);
+    delay(300);
     while (true) {
         Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
-        testBothReflectanceSensor();
-        if (dir == FORWARD || dir == CENTERED) {
+        testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
+        if (dir != NOT_ON_LINE) {
             break;
         } 
     }
+    delay(10);
     setAllMotorsToZero();
-    delay(1000);
-    driveBackward(speed * 0.25);
-    while (true) {
-        Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
-        if (dir != NOT_ON_LINE) {
-            break;
-        }
-    }
-    delay(50);
+    // delay(1000);
+    // driveBackward(speed * 0.3);
+    // while (true) {
+    //     Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
+    //     // testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
+    //     if (dir != NOT_ON_LINE) {
+    //         break;
+    //     }
+    // }
+    delay(100);
+    driveBackward(40);
+    delay(200);
     setAllMotorsToZero();
-    delay(5000);
+    delay(10);
+    
+    
+    // delay(1000);
     // driveBackward(30);
     // delay(100);
     // setAllMotorsToZero();

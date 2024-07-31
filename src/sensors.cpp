@@ -60,7 +60,7 @@ void testDetermineDirection( int frontSensorPin, int backSensorPin) {
     } else {
         Serial.println("Not on Line");
     }
-    delay(30);
+    // delay(30);
 }
 
 // Boolean to determine if the reflective sensors are centered on a black line.

@@ -22,15 +22,15 @@ void initializeMotorPins() {
 // Set a wheel to a given speed. A "true" direction means forwards. Controls via both motor pins attached to each wheel.
 void setMotorSpeed(int motorPin1, int motorPin2, bool direction, float speed) {
     if (direction) {
-        analogWrite(motorPin1, speed);
-        delay(1);
         analogWrite(motorPin2, 0);
-        delay(1);
+        delay(5);
+        analogWrite(motorPin1, round(speed));
+        delay(5);
     } else {
         analogWrite(motorPin1, 0);
-        delay(1);
-        analogWrite(motorPin2, speed);
-        delay(1);
+        delay(5);
+        analogWrite(motorPin2, round(speed));
+        delay(5);
     }
 }
 
@@ -87,7 +87,7 @@ void driveBackward(int speed) {
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated );
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated);
-    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated);
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated * 1.2);
 }
 
 // Turns the front right and back left wheels forwards, and front left and back right wheels backwards. Direct left linear motion.
@@ -163,11 +163,25 @@ void testRotate() {
 // Sets all motors to zero speed, stopping the robot. Can be used as an alternative to stopRobot2() if dynamic braking is not required. 
 void setAllMotorsToZero() {
     analogWrite(backRightMotorPin1, 0);
+    delay(1);
     analogWrite(backRightMotorPin2, 0);
+        delay(1);
+
     analogWrite(backLeftMotorPin1, 0);
+        delay(1);
     analogWrite(backLeftMotorPin2, 0);
+        delay(1);
+
     analogWrite(frontRightMotorPin1, 0);
+        delay(1);
+
     analogWrite(frontRightMotorPin2, 0);
+        delay(1);
+
     analogWrite(frontLeftMotorPin1, 0);
+        delay(1);
+
     analogWrite(frontLeftMotorPin2, 0);
+        delay(1);
+
 }

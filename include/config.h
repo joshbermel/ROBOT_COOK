@@ -25,7 +25,9 @@ const int pwmResolution = 10;
 
 // Servo motor pins
 const int servo1Pin = 26;
-const int servo2Pin = 27;
+const int servo2Pin = 25;
+const int servo3Pin = 5;
+const int servo4Pin = 15;
 
 // Microswitch sensor pins
 const int microswitch1Pin = 32;
@@ -38,7 +40,7 @@ const int backReflectanceSensor = 38;
 // Reflectance comparator thresholds
 // high reflectance is for being centered on the black tape 
 // higher threshold means both sensors must be high
-const int reflectanceThreshold = 2800;
+const int reflectanceThreshold = 930;
 const int reflectanceDifferenceThreshold = 400;
 
 // Calibrated Motor Speeds from Testing. Placeholder Values until testing is complete
