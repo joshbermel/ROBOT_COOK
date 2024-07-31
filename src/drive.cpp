@@ -23,14 +23,14 @@ void initializeMotorPins() {
 void setMotorSpeed(int motorPin1, int motorPin2, bool direction, float speed) {
     if (direction) {
         analogWrite(motorPin2, 0);
-        delay(5);
+        // delay(5);
         analogWrite(motorPin1, round(speed));
-        delay(5);
+        // delay(5);
     } else {
         analogWrite(motorPin1, 0);
-        delay(5);
+        // delay(5);
         analogWrite(motorPin2, round(speed));
-        delay(5);
+        // delay(5);
     }
 }
 
@@ -51,7 +51,7 @@ void driveForward(int speed) {
 
 void reversingBrake(int speed) {
     unsigned long startTime = millis();
-    unsigned long durationBR = 25; // Duration for back right motor
+    unsigned long durationBR = 0; // Duration for back right motor
     unsigned long durationFL = 15;  // Duration for front left motor
     unsigned long durationFR = 15;  // Duration for front right motor
     unsigned long durationBL = 15;  // Duration for back left motor
@@ -59,8 +59,8 @@ void reversingBrake(int speed) {
     // Start all motors
     setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated);
-    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated * 1.1);
-    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated * 1.1);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated);
 
     // Loop until all motors have been stopped
     while (millis() - startTime < durationBR || millis() - startTime < durationFL || millis() - startTime < durationFR || millis() - startTime < durationBL) {
@@ -87,7 +87,7 @@ void driveBackward(int speed) {
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated );
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated);
-    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated * 1.2);
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated * 1.3);
 }
 
 // Turns the front right and back left wheels forwards, and front left and back right wheels backwards. Direct left linear motion.

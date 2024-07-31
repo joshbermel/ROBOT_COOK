@@ -15,7 +15,7 @@ void flipCounters() {
     delay(500);
     setAllMotorsToZero();
     delay(200);
-    rotate180(115, 430);
+    rotate180(115, 365);
     setAllMotorsToZero();
     delay(300);
     driveLeft(50);
@@ -25,7 +25,7 @@ void flipCounters() {
 
 // Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line afterwards.
 // Ensure that you put a delay after this call. It can be any non zero value (i think)
-void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection) {
+void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection, int reverseTime) {
     int linesSkipped = 0;
     bool onLine = false;
 
@@ -33,11 +33,12 @@ void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection) 
         while (!isOnLine()) {
             if (moveDirection == FORWARD) {
                 driveForward(moveSpeed);
-                // delay(50);
+                delay(30);
             } else {
                 driveBackward(moveSpeed);
-                // delay(50);
+                delay(30);
             }
+            // testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
             onLine = false;  // Update onLine flag when not on line
         }
         if (!onLine) {
@@ -52,16 +53,16 @@ void skipLinesAndStop2(int linesToSkip, int moveSpeed, Direction moveDirection) 
             } else {
                 driveBackward(moveSpeed);
             }
+            // testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
     }
-    delay(600);
+    // delay(300);
     // Stop on the final line detected
     if (moveDirection == FORWARD) {
-        frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor);
+        frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, reverseTime);
     } else {
         backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor);
     }
-    // delay(100);
-    // Serial.println("Final line reached and stopped.");
+    
 }
 
 // Drives the robot forwards until a microswitch is pressed. Then stops the robot
@@ -78,7 +79,7 @@ void driveToWall(int speed, int microSwitchPin) {
     }
 }
 
-void frontStop(int speed, int frontSensorPin, int rightSensorPin) {
+void frontStop(int speed, int frontSensorPin, int rightSensorPin, int reverseTime) {
     driveForward(speed);
     delay(300);
     while (true) {
@@ -90,26 +91,12 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin) {
     }
     delay(10);
     setAllMotorsToZero();
-    // delay(1000);
-    // driveBackward(speed * 0.3);
-    // while (true) {
-    //     Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
-    //     // testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
-    //     if (dir != NOT_ON_LINE) {
-    //         break;
-    //     }
-    // }
-    delay(100);
-    driveBackward(40);
     delay(200);
-    setAllMotorsToZero();
-    delay(10);
-    
-    
-    // delay(1000);
-    // driveBackward(30);
-    // delay(100);
-    // setAllMotorsToZero();
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed);
+    delay(20);
+    driveBackward(40);
+    delay(150);
+    setAllMotorsToZero();    
 }
 
 void backStop(int speed, int frontSensorPin, int backSensorPin) {

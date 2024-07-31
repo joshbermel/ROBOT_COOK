@@ -12,11 +12,11 @@ int driveSpeed = 150;
 
 float FLSpeedCalibrated = 1.1;
 // 144 rotations in 30s
-float FRSpeedCalibrated = 1.1;
+float FRSpeedCalibrated = 1.25;
 // 142 rotations in 30s
 float BLSpeedCalibrated = 1.02;
 // 138 rotations in 30s
-float BRSpeedCalibrated = 1.3;
+float BRSpeedCalibrated = 1.35;
 // 142 rotations in 30s
 
 bool frontStopExecuted = false; // Flag to indicate if frontStop has been executed
@@ -34,67 +34,37 @@ void setup() {
 }
 void loop() {
 
-// frontStop(50, frontReflectanceSensor, backReflectanceSensor);
-// delay(3000);
+skipLinesAndStop2(1, 32, FORWARD, 150);
+delay(3000);
 // flipCounters();
 // delay(2000);
 
-// testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
-
-// frontStop(40, frontReflectanceSensor, backReflectanceSensor);
-// delay(3000);
-
-// driveForward(50);
-// delay(500);
-
-setServoAngle(servo1Control, 110);
-    delay(1000); // Wait for 1 second
-
-   setServoAngle(servo2Control, 110);
-    delay(1000); // Wait for 1 second
-
-    setServoAngle(servo3Control, 110);
-    delay(1000); // Wait for 1 second\
-
-    setServoAngle(servo4Control, 110);
-    delay(1000);
-
-    // Rotate servo1Control back to 0 degrees
-    setServoAngle(servo1Control, 0);
-    delay(1000); // Wait for 1 second
-
-     setServoAngle(servo2Control, 0);
-    delay(1000); // Wait for 1 second
-
-     setServoAngle(servo3Control, 0);
-    delay(1000); // Wait for 1 second
-
-     setServoAngle(servo4Control, 0);
-    delay(1000); // Wait for 1 second
-
-
-
-
-
-
-
 }
 
+//SERVO TESTING
 
-// ONCE DONE ALL CALIBRATION AND PIN REARRANGEMENT, RUN THE FOLLOWING TEST:
-// driveForward(driveSpeed);
-// delay(600);
-// driveBackward(255);
-// delay(50);
+// setServoAngle(servo1Control, 110);
+//     delay(1000); // Wait for 1 second
 
-// skipLinesAndStop2(reflectanceSensorLeftPin, reflectanceSensorRightPin, 0, driveSpeed, RIGHT);
-// delay(10);
+//    setServoAngle(servo2Control, 110);
+//     delay(1000); // Wait for 1 second
 
-// flipCounters(driveSpeed, reflectanceSensorLeftPin, reflectanceSensorRightPin, microswitch1Pin);
-// delay(10);
-// skipLinesAndStop2(reflectanceSensorLeftPin, reflectanceSensorRightPin, 2, driveSpeed, LEFT);
-// delay(10);
+//     setServoAngle(servo3Control, 110);
+//     delay(1000); // Wait for 1 second\
 
+//     setServoAngle(servo4Control, 110);
+//     delay(1000);
 
-// setAllMotorsToZero();
+//     // Rotate servo1Control back to 0 degrees
+//     setServoAngle(servo1Control, 0);
+//     delay(1000); // Wait for 1 second
+
+//      setServoAngle(servo2Control, 0);
+//     delay(1000); // Wait for 1 second
+
+//      setServoAngle(servo3Control, 0);
+//     delay(1000); // Wait for 1 second
+
+//      setServoAngle(servo4Control, 0);
+//     delay(1000); // Wait for 1 second
 ;
