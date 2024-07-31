@@ -31,18 +31,18 @@ void setMotorSpeed(int motorPin1, int motorPin2, bool direction, float speed) {
 // Sets all wheels to spin forwards at a given speed
 void driveForward(int speed) {
     setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
-    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated );
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
-    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated);
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated * 1.05);
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated * 1.05);
 }
 
 // Used to change direction to land on tape. Should be used to slam robot forwards temporarily.
 // REQUIRES TUNING TO BE IMPLEMENTED
 void reverseForward(int speed) {
-    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
-    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated );
-    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
-    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated);
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated * 1.2);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated * 1.2);
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated * 0.8);
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated * 0.8);
 }
 
 // Sets all wheels to spin backwards at a given speed
@@ -54,10 +54,10 @@ void driveBackward(int speed) {
 }
 
 void reverseBackward(int speed) {
-    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated);
-    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated );
-    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated);
-    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated * 1.3);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated * 1.2);
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated * 1.2);
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated * 0.8);
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated* 0.8);
 }
 
 // Turns the front right and back left wheels forwards, and front left and back right wheels backwards. Direct left linear motion.

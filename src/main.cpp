@@ -11,18 +11,23 @@ bool started = false;
 int driveSpeed = 150;
 
 float FLSpeedCalibrated = 1.1;
-// 144 rotations in 30s
-float FRSpeedCalibrated = 1.25;
-// 142 rotations in 30s
+float FRSpeedCalibrated = 1.2;
 float BLSpeedCalibrated = 1.02;
-// 138 rotations in 30s
-float BRSpeedCalibrated = 1.35;
-// 142 rotations in 30s
+float BRSpeedCalibrated = 1.3;
+
+float Sto2reverseTime = 150;
+
+// reverse time from buns to cutting board (placing bottom bun)
+float StoBreverseTime = 260;
+float BtoCBreverseTime = 300;
+float CBtoPforwardTime = 310;
+float PtoCTforwardTime = 250;
+float CTtoBforwardTime = 400;
+float CBtoBreverseTime = 260;
 
 bool frontStopExecuted = false; // Flag to indicate if frontStop has been executed
 
 int wallSwitch = microswitch1Pin;
-
 
 void setup() {
     Serial.begin(115200);
@@ -34,10 +39,8 @@ void setup() {
 }
 void loop() {
 
-backStop(35, frontReflectanceSensor, backReflectanceSensor, 150);
 delay(3000);
-// flipCounters();
-// delay(2000);
+runThroughCourse();
 
 }
 

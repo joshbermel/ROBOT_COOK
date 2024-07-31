@@ -49,5 +49,28 @@ extern float FRSpeedCalibrated;
 extern float BLSpeedCalibrated;
 extern float BRSpeedCalibrated;
 
+// This is only used once, at startup
+// reverse time from start to buns (getting bottom bun)
+extern float StoBreverseTime;
+
+// reverse time from buns to cutting board (placing bottom bun)
+extern float BtoCBreverseTime;
+
+// forward time from cutting board to patties (getting burger)
+extern float CBtoPforwardTime;
+
+// forward time from patties to cooktop (cooking burger)
+extern float PtoCTforwardTime;
+
+// forward time from cooktop to buns (getting top bun )
+extern float CTtoBforwardTime;
+
+// reverse time from buns to cutting board (placing top bun)
+extern float BtoCBreverseTime;
+
+// reverse time from cutting board to buns (getting bottom bun)
+extern float CBtoBreverseTime;
+
+
 
 #endif // CONFIG_H

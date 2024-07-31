@@ -15,11 +15,11 @@ void flipCounters() {
     delay(500);
     setAllMotorsToZero();
     delay(200);
-    rotate180(115, 365);
+    rotate180(115, 410);
     setAllMotorsToZero();
     delay(300);
     driveLeft(50);
-    delay(350);
+    delay(380);
     setAllMotorsToZero();
 }
 
@@ -33,19 +33,16 @@ void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, i
         while (!isOnLine()) {
             if (moveDirection == FORWARD) {
                 driveForward(moveSpeed);
-                delay(30);
+                delay(20);
             } else {
                 driveBackward(moveSpeed);
-                delay(30);
+                delay(20);
             }
-            // testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
             onLine = false;  // Update onLine flag when not on line
         }
         if (!onLine) {
                 linesSkipped++;
                 onLine = true;  // Update onLine flag when on line
-                // Serial.print("Line detected. Lines skipped: ");
-                // Serial.println(linesSkipped);
             }
 
             if (moveDirection == FORWARD) {
@@ -53,10 +50,7 @@ void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, i
             } else {
                 driveBackward(moveSpeed);
             }
-            // testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
     }
-    // delay(300);
-    // Stop on the final line detected
     if (moveDirection == FORWARD) {
         frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, changeTime);
     } else {
@@ -80,7 +74,12 @@ void driveToWall(int speed, int microSwitchPin) {
     }
 }
 
-
+// drives towards wall without using microswitches. Just uses timing
+void driveToWall2() {
+    driveLeft(50);
+    delay(450);
+    setAllMotorsToZero();
+}
 
 void frontStop(int speed, int frontSensorPin, int rightSensorPin, int reverseTime) {
     driveForward(speed);
@@ -93,10 +92,10 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin, int reverseTim
     }
     delay(10);
     setAllMotorsToZero();
-    delay(200);
-    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed);
-    delay(20);
-    reverseBackward(40);
+    delay(400);
+    // setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed);
+    // delay(20);
+    reverseBackward(30);
     delay(reverseTime);
     setAllMotorsToZero();    
 }
@@ -112,10 +111,73 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, int forwardTime)
     }
     delay(10);
     setAllMotorsToZero();
-    delay(200);
-    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed);
-    delay(20);
-    reverseForward(40);
+    delay(400);
+    // setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed);
+    // delay(20);
+    reverseForward(30);
     delay(forwardTime);
     setAllMotorsToZero();
 }
+
+void driveStoB(int changeTime) {
+    driveToWall2();
+    delay(400);
+    skipLinesAndStop(1, 35, FORWARD, changeTime);
+}
+
+void driveBtoCB(int changeTime) {
+    flipCounters();
+    delay(400);
+    skipLinesAndStop(0, 35, FORWARD, changeTime);
+}
+
+void driveCBtoP(int changeTime) {
+    flipCounters();
+    delay(400);
+    skipLinesAndStop(0, 35, BACKWARD, changeTime);
+    // delay(200);
+    // driveLeft(20);
+    // delay(100);
+}
+
+void drivePtoCT(int changeTime) {
+    flipCounters();
+    delay(400);
+    skipLinesAndStop(1, 35, BACKWARD, changeTime);
+}
+
+void driveCTtoB(int changeTime) {
+    flipCounters();
+    delay(400);
+    skipLinesAndStop(0, 35, BACKWARD, changeTime);
+}
+
+void driveCBtoB(int changeTime) {
+    flipCounters();
+    delay(400);
+    skipLinesAndStop(0, 35, FORWARD, changeTime);
+}
+
+void runThroughCourse() {
+    driveStoB(StoBreverseTime);
+    delay(1000);
+
+    driveBtoCB(BtoCBreverseTime);
+    delay(1000);
+
+    driveCBtoP(CBtoPforwardTime);
+    delay(1000);
+
+    drivePtoCT(PtoCTforwardTime);
+    delay(1000);
+
+    driveCTtoB(CTtoBforwardTime);
+    delay(1000);
+
+    driveBtoCB(BtoCBreverseTime);
+    delay(1000);
+
+    driveCBtoB(CBtoBreverseTime);
+    delay(1000);
+}
+
