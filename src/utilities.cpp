@@ -7,6 +7,7 @@
 
 int tuningSpeed = 40;
 int stationDelay = 200;
+int detectSpeed = 45;
 
 // Function for robot to drive backwards, turn around, and drive forward until we reach the other counter. 
 // HAS BEEN MODIFIED TO NOT INCLUDE MICROSWITCH INPUT. CAN BE CHANGED IF WE WANT.
@@ -14,13 +15,13 @@ void flipCounters() {
     // turning around 
     driveRight(90);
     delay(500);
-    setAllMotorsToZero();
-    delay(200);
-    rotate180(110, 450);
-    setAllMotorsToZero();
-    delay(300);
+    // setAllMotorsToZero();
+    // delay(200);
+    rotate180(110, 500);
+    // setAllMotorsToZero();
+    // delay(300);
     driveLeft(90);
-    delay(600);
+    delay(450);
     setAllMotorsToZero();
 }
 
@@ -109,8 +110,8 @@ void driveToWall(int speed, int microSwitchPin) {
 
 // drives towards wall without using microswitches. Just uses timing
 void driveToWall2() {
-    driveLeft(80);
-    delay(650);
+    driveLeft(100);
+    delay(250);
     setAllMotorsToZero();
 }
 
@@ -124,10 +125,10 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin, int reverseTim
                 break;
             } 
         }
-        delay(100);
+        delay(45);
         // setAllMotorsToZero();
 
-        driveBackwardLeft(30.5);
+        driveBackwardLeft(30);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
@@ -175,7 +176,7 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, int forwardTime,
                 break;
             }
         }
-        delay(150);
+        delay(45);
         // setAllMotorsToZero();
 
         driveForwardLeft(30);
@@ -219,14 +220,14 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, int forwardTime,
 void driveStoB(int changeTime) {
     driveToWall2();
     delay(600);
-    skipLinesAndStop(2, 35, FORWARD, changeTime, LEFT);
+    skipLinesAndStop(2, detectSpeed, FORWARD, changeTime, LEFT);
     pushToWall();
 }
 
 void driveBtoCB(int changeTime) {
     flipCounters();
     delay(400);
-    skipLinesAndStop(0, 35, FORWARD, changeTime, LEFT);
+    skipLinesAndStop(0, detectSpeed, FORWARD, changeTime, LEFT);
     pushToWall();
 
 }
@@ -234,28 +235,28 @@ void driveBtoCB(int changeTime) {
 void driveCBtoP(int changeTime) {
     flipCounters();
     delay(400);
-    skipLinesAndStop(0, 35, BACKWARD, changeTime, LEFT);
+    skipLinesAndStop(0, detectSpeed, BACKWARD, changeTime, LEFT);
     pushToWall(); 
 }
 
 void drivePtoCT(int changeTime) {
     flipCounters();
     delay(400);
-    skipLinesAndStop(2, 35, BACKWARD, changeTime, LEFT);
+    skipLinesAndStop(2, detectSpeed, BACKWARD, changeTime, LEFT);
     pushToWall();
 }
 
 void driveCTtoB(int changeTime) {
     flipCounters();
     delay(400);
-    skipLinesAndStop(0, 37, BACKWARD, changeTime, LEFT);
+    skipLinesAndStop(0, detectSpeed, BACKWARD, changeTime, LEFT);
     pushToWall();
 }
 
 void driveCBtoB(int changeTime) {
     flipCounters();
     delay(400);
-    skipLinesAndStop(0, 35, FORWARD, changeTime, LEFT);
+    skipLinesAndStop(0, detectSpeed, FORWARD, changeTime, LEFT);
     pushToWall();
 }
 
@@ -283,9 +284,9 @@ void runThroughCourse() {
 }
 
 void pushToWall() {
-    delay(300);
-    driveLeft(90);
-    delay(300);
+    // delay(300);
+    driveLeft(120);
+    delay(270);
     setAllMotorsToZero();
 }
 

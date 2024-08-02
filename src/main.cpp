@@ -40,6 +40,7 @@ void loop() {
 
 delay(3000);
 runThroughCourse();
-delay(10000);
+delay(100000);
+
 
 }
