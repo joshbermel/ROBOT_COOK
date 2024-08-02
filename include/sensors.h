@@ -18,7 +18,7 @@ Direction determineDirection(int frontSensorPin, int backSensorPin);
 bool isOnLine();
 void testBothReflectanceSensor();
 void testSingleReflectanceSensor(int sensorPin);
-void testDetermineDirection(int frontSensorPin, int backSensotPin);
+void testDetermineDirection(int frontSensorPin, int backSensorPin);
 void testIsOnLine();
 
 #endif // SENSORS_H

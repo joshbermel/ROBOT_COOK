@@ -9,9 +9,9 @@ void setup() {
 }
 
 void loop() {
-    testReadReflectanceSensor(reflectanceSensorLeftPin);
-    testReadReflectanceSensor(reflectanceSensorRightPin);
-    testDetermineDirection(reflectanceSensorLeftPin, reflectanceSensorRightPin);
+    testReadReflectanceSensor(frontReflectanceSensor);
+    testReadReflectanceSensor(backReflectanceSensor);
+    testDetermineDirection(frontReflectanceSensor, backReflectanceSensor);
     delay(1000);
 }
 

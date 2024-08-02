@@ -27,29 +27,57 @@ void setMotorSpeed(int motorPin1, int motorPin2, bool direction, float speed) {
         analogWrite(motorPin2, round(speed));
     }
 }
-   
-// Sets all wheels to spin forwards at a given speed
-void driveForward(int speed) {
+
+void driveForwardStraight(int speed) {
     setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
-    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated * 1.05);
-    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated * 1.05);
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated );
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated );
+}
+
+// Sets all wheels to spin forwards at a given speed
+void driveForwardLeft(int speed) {
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated * 1.4);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated * 1.4);
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated );
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated );
+}
+
+void driveForwardRight(int speed) {
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated);
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated * 1.4);
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated * 1.4);
 }
 
 // Used to change direction to land on tape. Should be used to slam robot forwards temporarily.
 // REQUIRES TUNING TO BE IMPLEMENTED
 void reverseForward(int speed) {
-    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated * 1.2);
-    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated * 1.2);
-    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated * 0.8);
-    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated * 0.8);
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, true, speed * BRSpeedCalibrated * 1);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, true, speed * FRSpeedCalibrated * 1);
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, true, speed * FLSpeedCalibrated * 1);
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, true, speed * BLSpeedCalibrated * 1);
 }
 
 // Sets all wheels to spin backwards at a given speed
-void driveBackward(int speed) {
+void driveBackwardStraight(int speed) {
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated);
     setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated );
     setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated);
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated);
+}
+
+void driveBackwardLeft(int speed) {
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated * 1.1);
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated);
+    setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated * 1.1);
+}
+
+void driveBackwardRight(int speed) {
+    setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, false, speed * FLSpeedCalibrated * 1.6);
+    setMotorSpeed(frontRightMotorPin1, frontRightMotorPin2, false, speed * FRSpeedCalibrated );
+    setMotorSpeed(backLeftMotorPin1, backLeftMotorPin2, false, speed * BLSpeedCalibrated * 1.6);
     setMotorSpeed(backRightMotorPin1, backRightMotorPin2, false, speed * BRSpeedCalibrated);
 }
 
@@ -95,12 +123,12 @@ void rotate180(int rotateSpeed, int rotateTime) {
 
 // Testing function to drive forwards, stop, drive backwards, stop. 
 void testDriveForwardBackward() {
-    driveForward(50);
+    driveForwardStraight(50);
     delay(1000);
     setAllMotorsToZero();
     delay(500);
 
-    driveBackward(50);
+    driveBackwardStraight(50);
     delay(1000);
     setAllMotorsToZero();
     delay(500);

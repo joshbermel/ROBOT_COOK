@@ -10,8 +10,6 @@ void setup() {
 
 void loop() {
     testMicroSwitchPress(microswitch1Pin);
-    testMicroSwitchPress(microswitch2Pin);
-    testMicroSwitchPress(microswitch3Pin);
     delay(1000); // Add a delay to avoid overwhelming the serial output
 }
 

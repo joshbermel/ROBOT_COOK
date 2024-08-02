@@ -6,8 +6,12 @@
 void initializeMotorPins();
 void setMotorSpeed(int motorPin1, int motorPin2, bool direction, float speed);
 void dynamicBrakeMotor(int motorPin1, int motorPin2);
-void driveForward(int speed);
-void driveBackward(int speed);
+void driveForwardStraight(int speed);
+void driveForwardLeft(int speed);
+void driveForwardRight(int speed);
+void driveBackwardStraight(int speed);
+void driveBackwardLeft(int speed);
+void driveBackwardRight(int speed);
 void driveLeft(int speed);
 void driveRight(int speed);
 void rotate180(int rotateSpeed, int rotateTime);
