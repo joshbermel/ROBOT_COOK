@@ -18,6 +18,7 @@ void drivePtoCT(int changeTime);
 void driveCTtoB(int changeTime);
 void driveCBtoB(int changeTime);
 void runThroughCourse();
+void pushToWall();
 
 
 #endif // UTILITIES_H

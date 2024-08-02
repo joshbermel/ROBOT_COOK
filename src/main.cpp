@@ -38,8 +38,8 @@ void setup() {
 }
 void loop() {
 
-skipLinesAndStop(0, 60, FORWARD, 150, LEFT);
-delay(5000);
-
+delay(3000);
+runThroughCourse();
+delay(10000);
 
 }
