@@ -26,7 +26,7 @@ float CBtoBreverseTime = 260;
 
 bool frontStopExecuted = false; // Flag to indicate if frontStop has been executed
 
-int wallSwitch = microswitch1Pin;
+// int wallSwitch = microswitch1Pin;
 
 void setup() {
     Serial.begin(115200);
@@ -38,9 +38,6 @@ void setup() {
 }
 void loop() {
 
-delay(3000);
-runThroughCourse();
-delay(100000);
-
+test4Servos();
 
 }

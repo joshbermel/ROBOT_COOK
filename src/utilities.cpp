@@ -93,23 +93,8 @@ void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, i
     
 }
 
-// Drives the robot forwards until a microswitch is pressed. Then stops the robot.
-// This is if we are using a microswitch.
-void driveToWall(int speed, int microSwitchPin) {
-    while (true) {
-        if (isMicroswitchPressed(microSwitchPin)) {
-            stopRobot2();
-            break;
-        }
-        else {
-            driveForwardStraight(speed);
-        }
-        delay(20);
-    }
-}
-
 // drives towards wall without using microswitches. Just uses timing
-void driveToWall2() {
+void driveToWall() {
     driveLeft(100);
     delay(250);
     setAllMotorsToZero();
@@ -218,7 +203,7 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, int forwardTime,
 }
 
 void driveStoB(int changeTime) {
-    driveToWall2();
+    driveToWall();
     delay(600);
     skipLinesAndStop(2, detectSpeed, FORWARD, changeTime, LEFT);
     pushToWall();

@@ -27,7 +27,6 @@ const int pwmResolution = 10;
 const int servo1Pin = 26;
 const int servo2Pin = 25;
 const int servo3Pin = 5;
-const int servo4Pin = 15;
 
 // Microswitch sensor pins
 const int microswitch1Pin = 19;

@@ -1,31 +1,25 @@
 #include "servos.h"
 #include "config.h" // Only if config.h is necessary for servo functions
 
-ServoControl servo1Control;
-ServoControl servo2Control;
-ServoControl servo3Control;
-ServoControl servo4Control;
-
 // Initialize servo pins, and write to them to go to and 90 degree angle. 
 void initializeServoPins() {
-    servo1Control.servo.attach(servo1Pin);
-    servo2Control.servo.attach(servo2Pin);
-    servo3Control.servo.attach(servo3Pin);
-    servo4Control.servo.attach(servo4Pin);
-    servo1Control.currentAngle = 90;
-    servo2Control.currentAngle = 90;
-    servo3Control.currentAngle = 90;
-    servo4Control.currentAngle = 90;
-    servo1Control.servo.write(servo1Control.currentAngle);
-    servo2Control.servo.write(servo2Control.currentAngle);
-    servo3Control.servo.write(servo3Control.currentAngle);
-    servo4Control.servo.write(servo4Control.currentAngle);
+    pinMode(servo1Pin, OUTPUT);
+    pinMode(servo2Pin, OUTPUT);
+    pinMode(servo3Pin, OUTPUT);
+
+    analogWriteFrequency(50);
 }
 
-// Sets a servo to a given angle argument.
-void setServoAngle(ServoControl &servoControl, int angle) {
-    servoControl.servo.write(angle);
-    servoControl.currentAngle = angle;
+void setServoAngle(int pin, int angle) {
+    const int minPulseWidth = 500;
+    const int maxPulseWidth = 2500; 
+    const int pwmMax = 255;
+    
+    int pulseWidth = map(angle, 0, 180, minPulseWidth, maxPulseWidth);
+
+    int pwmValue = map(pulseWidth, 0, 20000, 0, pwmMax);
+
+    analogWrite(pin, pwmValue);
 }
 
 // Keeps track of the servo angle that we are currently at.
@@ -44,30 +38,10 @@ void dropItem(ServoControl &servoContrl, ServoControl &servoControl2) {
 }
 
 void test4Servos() {
-    
-    // Set all servos to 110 degrees
-    setServoAngle(servo1Control, 110);
+    setServoAngle(servo1Pin, 20);
+    setServoAngle(servo2Pin, 33);
+    setServoAngle(servo3Pin, 0);
     delay(1000);
-
-    setServoAngle(servo2Control, 110);
-    delay(1000);
-
-    setServoAngle(servo3Control, 110);
-    delay(1000);
-
-    setServoAngle(servo4Control, 110);
-    delay(1000);
-
-    // Rotate all servos back to 0 degrees
-    setServoAngle(servo1Control, 0);
-    delay(1000);
-
-     setServoAngle(servo2Control, 0);
-    delay(1000);
-
-     setServoAngle(servo3Control, 0);
-    delay(1000);
-
-     setServoAngle(servo4Control, 0);
+    setServoAngle(servo3Pin, 130);
     delay(1000);
 }

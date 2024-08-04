@@ -3,7 +3,7 @@
 
 // Setting all microswitch pins to be digital inputs which are active on Low (pullup)
 void initializeMicroSwitchPins() {
-    pinMode(microswitch1Pin, INPUT_PULLUP);
+    // pinMode(microswitch1Pin, INPUT_PULLUP);
 }
 
 // Checking to see if microswitch pin is active (low)
