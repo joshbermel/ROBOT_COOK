@@ -23,8 +23,8 @@ const int frontReflectanceSensor = 34;
 const int backReflectanceSensor = 38;
 
 // Rotation Parameters
-int rotateTime = 500; // in millis
-int rotateSpeed = 110;
+extern int rotateTime; // in millis
+extern int rotateSpeed;
 
 // Drive Speed Parameter
 extern int driveSpeed;
@@ -36,46 +36,33 @@ const int pwmResolution = 10;
 // Reflectance comparator thresholds
 // high reflectance is for being centered on the black tape 
 // higher threshold means both sensors must be high
-const int reflectanceThreshold = 2500;
-const int reflectanceDifferenceThreshold = 400;
+extern int reflectanceThreshold;
+extern int reflectanceDifferenceThreshold;
 
 // Detection speed parameter for sensing tape
-int detectSpeed = 45;
+extern int detectSpeed;
 
 // Station Delay Parameter
-int stationDelay = 200;
+extern int stationDelay;
 
 // delay between lowering and closing the claw at each station
-int servoDropDelay = 500;
+extern int servoDropDelay;
 
 // Calibrated Motor Speeds Parameters
-float FLSpeedCalibrated = 1.1;
-float FRSpeedCalibrated = 1.2;
-float BLSpeedCalibrated = 1.02;
-float BRSpeedCalibrated = 1.3;
+extern float FLSpeedCalibrated;
+extern float FRSpeedCalibrated;
+extern float BLSpeedCalibrated;
+extern float BRSpeedCalibrated;
 
-// This is only used once, at startup
-// reverse time from start to buns (getting bottom bun)
-extern float StoBreverseTime;
-
-// reverse time from buns to cutting board (placing bottom bun)
-extern float BtoCBreverseTime;
-
-// forward time from cutting board to patties (getting burger)
-extern float CBtoPforwardTime;
-
-// forward time from patties to cooktop (cooking burger)
-extern float PtoCTforwardTime;
-
-// forward time from cooktop to buns (getting top bun )
-extern float CTtoBforwardTime;
-
-// reverse time from buns to cutting board (placing top bun)
-extern float BtoCBreverseTime;
-
-// reverse time from cutting board to buns (getting bottom bun)
-extern float CBtoBreverseTime;
-
+// Servo Angle parameters
+extern int raiseClawServo2Angle;
+extern int raiseClawServo3Angle;
+extern int lowerClawServo2Angle;
+extern int lowerClawServo3Angle;
+extern int grabBottomBunAngle;
+extern int grabPattyAngle;
+extern int grabTopBunAngle;
+extern int openClawAngle;
 
 
 #endif // CONFIG_H

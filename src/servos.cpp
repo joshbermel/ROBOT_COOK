@@ -32,27 +32,27 @@ void test4Servos() {
 }
 
 void raiseClaw(){
-    setServoAngle(servo2Pin, 20);
-    setServoAngle(servo3Pin, 33);
+    setServoAngle(servo2Pin, raiseClawServo2Angle);
+    setServoAngle(servo3Pin, raiseClawServo3Angle);
 }
 
 void lowerClaw(){
-    setServoAngle(servo2Pin, 10);
-    setServoAngle(servo3Pin, 23);
+    setServoAngle(servo2Pin, lowerClawServo2Angle);
+    setServoAngle(servo3Pin, lowerClawServo3Angle);
 }
 
 void openClaw(){
-    setServoAngle(servo1Pin, 0);
+    setServoAngle(servo1Pin, openClawAngle);
 }
 
 void grabBottomBun(){
-    setServoAngle(servo1Pin, 70);
+    setServoAngle(servo1Pin, grabBottomBunAngle);
 }
 
 void grabPatty(){
-    setServoAngle(servo1Pin, 70);
+    setServoAngle(servo1Pin, grabPattyAngle);
 }
 
 void grabTopBun(){
-    setServoAngle(servo1Pin, 70);
+    setServoAngle(servo1Pin, grabTopBunAngle);
 }

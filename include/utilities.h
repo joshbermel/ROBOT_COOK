@@ -10,12 +10,12 @@ void backStop(int speed, int frontsensorpin, int backsensorpin, Direction touchi
 void flipCounters();
 void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, Direction touchingSide);
 void driveToWall();
-void driveStoB(int changeTime);
-void driveBtoCB(int changeTime);
-void driveCBtoP(int changeTime);
-void drivePtoCT(int changeTime);
-void driveCTtoB(int changeTime);
-void driveCBtoB(int changeTime);
+void driveStoB();
+void driveBtoCB();
+void driveCBtoP();
+void drivePtoCT();
+void driveCTtoB();
+void driveCBtoB();
 void runThroughCourse();
 void pushToWall();
 

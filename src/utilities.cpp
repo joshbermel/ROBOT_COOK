@@ -195,14 +195,14 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, Direction touchi
     }   
 }
 
-void driveStoB(int changeTime) {
+void driveStoB() {
     driveToWall();
     delay(600);
     skipLinesAndStop(2, detectSpeed, FORWARD, LEFT);
     pushToWall();
 }
 
-void driveBtoCB(int changeTime) {
+void driveBtoCB() {
     flipCounters();
     delay(400);
     skipLinesAndStop(0, detectSpeed, FORWARD, LEFT);
@@ -210,28 +210,28 @@ void driveBtoCB(int changeTime) {
 
 }
 
-void driveCBtoP(int changeTime) {
+void driveCBtoP() {
     flipCounters();
     delay(400);
     skipLinesAndStop(0, detectSpeed, BACKWARD, LEFT);
     pushToWall(); 
 }
 
-void drivePtoCT(int changeTime) {
+void drivePtoCT() {
     flipCounters();
     delay(400);
     skipLinesAndStop(2, detectSpeed, BACKWARD, LEFT);
     pushToWall();
 }
 
-void driveCTtoB(int changeTime) {
+void driveCTtoB() {
     flipCounters();
     delay(400);
     skipLinesAndStop(0, detectSpeed, BACKWARD, LEFT);
     pushToWall();
 }
 
-void driveCBtoB(int changeTime) {
+void driveCBtoB() {
     flipCounters();
     delay(400);
     skipLinesAndStop(0, detectSpeed, FORWARD, LEFT);
@@ -239,25 +239,25 @@ void driveCBtoB(int changeTime) {
 }
 
 void runThroughCourse() {
-    driveStoB(StoBreverseTime);
+    driveStoB();
     delay(stationDelay);
 
-    driveBtoCB(BtoCBreverseTime);
+    driveBtoCB();
     delay(stationDelay);
 
-    driveCBtoP(CBtoPforwardTime);
+    driveCBtoP();
     delay(stationDelay);
 
-    drivePtoCT(PtoCTforwardTime);
+    drivePtoCT();
     delay(stationDelay);
 
-    driveCTtoB(CTtoBforwardTime);
+    driveCTtoB();
     delay(stationDelay);
 
-    driveBtoCB(BtoCBreverseTime);
+    driveBtoCB();
     delay(stationDelay);
 
-    driveCBtoB(CBtoBreverseTime);
+    driveCBtoB();
     delay(stationDelay);
 }
 
