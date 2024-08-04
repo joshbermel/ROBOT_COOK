@@ -14,11 +14,14 @@ extern ServoControl servo2Control;
 extern ServoControl servo3Control;
 
 void initializeServoPins();
-void setServoAngle(ServoControl &servoControl, int angle);
-int getServoAngle(ServoControl &servoControl);
-void pickupItem(ServoControl &servoControl, ServoControl &servoControl2);
-void dropItem(ServoControl &servoControl, ServoControl &servoControl2);
 void test4Servos();
 void setServoAngle(int pin, int angle);
+void raiseClaw();
+void lowerClaw();
+void openClaw();
+void grabBottomBun();
+void grabPatty();
+void grabTopBun();
+
 
 #endif // SERVOS_H

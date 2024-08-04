@@ -2,12 +2,9 @@
 #include "config.h" // Only if config.h is necessary for servo functions
 #include "sensors.h"
 #include "drive.h"
-#include "microswitch.h"
 #include "servos.h"
 
 int tuningSpeed = 40;
-int stationDelay = 200;
-int detectSpeed = 45;
 
 // Function for robot to drive backwards, turn around, and drive forward until we reach the other counter. 
 // HAS BEEN MODIFIED TO NOT INCLUDE MICROSWITCH INPUT. CAN BE CHANGED IF WE WANT.
@@ -15,11 +12,7 @@ void flipCounters() {
     // turning around 
     driveRight(90);
     delay(500);
-    // setAllMotorsToZero();
-    // delay(200);
     rotate180(110, 500);
-    // setAllMotorsToZero();
-    // delay(300);
     driveLeft(90);
     delay(450);
     setAllMotorsToZero();
@@ -27,7 +20,7 @@ void flipCounters() {
 
 // Drives the robot either left or right and skips over a given number of lines, and centers on the nearest line afterwards.
 // Ensure that you put a delay after this call. It can be any non zero value (i think)
-void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, int changeTime, Direction touchingSide) {
+void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, Direction touchingSide) {
     int linesSkipped = 0;
     bool onLine = false;
 
@@ -55,9 +48,9 @@ void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, i
                 }
         }
         if (moveDirection == FORWARD) {
-            frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, changeTime, LEFT);
+            frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, LEFT);
         } else {
-            backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, changeTime, LEFT);
+            backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, LEFT);
         }
     }
     else if (touchingSide == RIGHT) {
@@ -84,9 +77,9 @@ void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, i
                 }
         }
         if (moveDirection == FORWARD) {
-            frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, changeTime, RIGHT);
+            frontStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, RIGHT);
         } else {
-            backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, changeTime, RIGHT);
+            backStop(moveSpeed, frontReflectanceSensor, backReflectanceSensor, RIGHT);
         }
     }
 
@@ -100,7 +93,7 @@ void driveToWall() {
     setAllMotorsToZero();
 }
 
-void frontStop(int speed, int frontSensorPin, int rightSensorPin, int reverseTime, Direction touchingSide) {
+void frontStop(int speed, int frontSensorPin, int rightSensorPin, Direction touchingSide) {
     if (touchingSide == LEFT) {
         driveForwardLeft(speed);
         // delay(300);
@@ -151,7 +144,7 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin, int reverseTim
     }
 }
 
-void backStop(int speed, int frontSensorPin, int backSensorPin, int forwardTime, Direction touchingSide) {
+void backStop(int speed, int frontSensorPin, int backSensorPin, Direction touchingSide) {
     if (touchingSide == LEFT) {
         driveBackwardLeft(speed);
         // delay(300);
@@ -205,14 +198,14 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, int forwardTime,
 void driveStoB(int changeTime) {
     driveToWall();
     delay(600);
-    skipLinesAndStop(2, detectSpeed, FORWARD, changeTime, LEFT);
+    skipLinesAndStop(2, detectSpeed, FORWARD, LEFT);
     pushToWall();
 }
 
 void driveBtoCB(int changeTime) {
     flipCounters();
     delay(400);
-    skipLinesAndStop(0, detectSpeed, FORWARD, changeTime, LEFT);
+    skipLinesAndStop(0, detectSpeed, FORWARD, LEFT);
     pushToWall();
 
 }
@@ -220,28 +213,28 @@ void driveBtoCB(int changeTime) {
 void driveCBtoP(int changeTime) {
     flipCounters();
     delay(400);
-    skipLinesAndStop(0, detectSpeed, BACKWARD, changeTime, LEFT);
+    skipLinesAndStop(0, detectSpeed, BACKWARD, LEFT);
     pushToWall(); 
 }
 
 void drivePtoCT(int changeTime) {
     flipCounters();
     delay(400);
-    skipLinesAndStop(2, detectSpeed, BACKWARD, changeTime, LEFT);
+    skipLinesAndStop(2, detectSpeed, BACKWARD, LEFT);
     pushToWall();
 }
 
 void driveCTtoB(int changeTime) {
     flipCounters();
     delay(400);
-    skipLinesAndStop(0, detectSpeed, BACKWARD, changeTime, LEFT);
+    skipLinesAndStop(0, detectSpeed, BACKWARD, LEFT);
     pushToWall();
 }
 
 void driveCBtoB(int changeTime) {
     flipCounters();
     delay(400);
-    skipLinesAndStop(0, detectSpeed, FORWARD, changeTime, LEFT);
+    skipLinesAndStop(0, detectSpeed, FORWARD, LEFT);
     pushToWall();
 }
 

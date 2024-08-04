@@ -9,13 +9,11 @@ void initializeSensorPins() {
 
 // Reading the analog input from a reflectance sensor pin
 bool readReflectanceSensor(int SensorPin) {
-    // return analogRead(pin1);
     return (analogRead(SensorPin) > reflectanceThreshold);
 }
 
 // Testing function to read and Serial print the readings from left and right reflectance sensor pins. 
 void testBothReflectanceSensor() {
-    // return analogRead(pin1);
     Serial.println("Front Pin Reading:");
     Serial.println(analogRead(frontReflectanceSensor));
 
@@ -25,7 +23,6 @@ void testBothReflectanceSensor() {
 
 // Testng function to real and Serial print the reading from a single reflectance sensor pin. 
 void testSingleReflectanceSensor(int sensorPin) {
-    // return analogRead(pin1);
     Serial.println(readReflectanceSensor(sensorPin));
     delay(30);
 }
@@ -60,24 +57,15 @@ void testDetermineDirection( int frontSensorPin, int backSensorPin) {
     } else {
         Serial.println("Not on Line");
     }
-    // delay(30);
 }
 
 // Boolean to determine if the reflective sensors are centered on a black line.
 bool isOnLine() {
-    // return (readReflectanceSensor(frontReflectanceSensor) && readReflectanceSensor(backReflectanceSensor));
     return (readReflectanceSensor(frontReflectanceSensor) || readReflectanceSensor(backReflectanceSensor));
 }
 
 // Testing function for isOnLine(). Serial prints the outputs that indicate if the sensors are centered on the line.
 void testIsOnLine() {
-    // if (readReflectanceSensor(frontReflectanceSensor) && readReflectanceSensor(backReflectanceSensor)) {
-    //     Serial.println("centered");
-    // }
-    // else {
-    //     Serial.println("not centered");
-    // }
-
     if (readReflectanceSensor(frontReflectanceSensor) || readReflectanceSensor(backReflectanceSensor)) {
         Serial.println("Close to line");
     }

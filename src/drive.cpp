@@ -110,7 +110,6 @@ void driveRight(int speed) {
 // REQUIRES TUNING FOR FINAL ROBOT.
 void rotate180(int rotateSpeed, int rotateTime) {
     bool direction = rotateSpeed > 0;
-    Serial.println(direction ? "Rotating CW" : "Rotating CCW");
 
     setMotorSpeed(backRightMotorPin1, backRightMotorPin2, !direction, rotateSpeed * BRSpeedCalibrated);
     setMotorSpeed(frontLeftMotorPin1, frontLeftMotorPin2, direction, rotateSpeed * FLSpeedCalibrated);
