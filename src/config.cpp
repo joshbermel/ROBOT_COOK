@@ -17,17 +17,17 @@ int driveSpeed = 25;
 // Reflectance comparator thresholds
 // high reflectance is for being centered on the black tape 
 // higher threshold means both sensors must be high
-int reflectanceThreshold = 2500;
+int reflectanceThreshold = 1500;
 int reflectanceDifferenceThreshold = 400;
 
 // Detection speed parameter for sensing tape
-int detectSpeed = 30;
+int detectSpeed = 35;
 
 // Station Delay Parameter
-int stationDelay = 500;
+int stationDelay = 200;
 
 // delay between lowering and closing the claw at each station
-int servoDropDelay = 1000;
+int servoDropDelay = 500;
 
 // Calibrated Motor Speeds Parameters
 float FLSpeedCalibrated = 1.1;

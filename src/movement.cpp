@@ -199,7 +199,7 @@ void burger(){
         delay(stationDelay);
     }
     
-    while (runTimes < 4){
+    while (runTimes < 2){
         runTimes++;
 
         moveCBtoB();

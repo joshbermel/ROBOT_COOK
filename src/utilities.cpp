@@ -116,7 +116,7 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin, Direction touc
         }
         delay(100);
 
-        driveBackwardLeft(25);
+        driveBackwardLeft(28);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
@@ -160,7 +160,7 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, Direction touchi
         }
         delay(100);
 
-        driveForwardLeft(24);
+        driveForwardLeft(25);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
