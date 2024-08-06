@@ -14,9 +14,9 @@ const int frontLeftMotorPin1 = 20;
 const int frontLeftMotorPin2 = 21;
 
 // Servo motor pins
-const int servo1Pin = 26;
-const int servo2Pin = 25;
-const int servo3Pin = 5;
+const int servoBigClawPin = 26;
+const int servoSmallClawPin = 25;
+const int servoClawPin = 5;
 
 // Reflectance sensor pins
 const int frontReflectanceSensor = 34;
@@ -55,10 +55,10 @@ extern float BLSpeedCalibrated;
 extern float BRSpeedCalibrated;
 
 // Servo Angle parameters
-extern int raiseClawServo2Angle;
-extern int raiseClawServo3Angle;
-extern int lowerClawServo2Angle;
-extern int lowerClawServo3Angle;
+extern int raiseServoBigClawAngle;
+extern int raiseServoSmallClawAngle;
+extern int lowerServoBigClawAngle;
+extern int lowerServoSmallClawAngle;
 extern int grabBottomBunAngle;
 extern int grabPattyAngle;
 extern int grabTopBunAngle;

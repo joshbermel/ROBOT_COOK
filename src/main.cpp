@@ -16,8 +16,6 @@ void setup() {
 }
 void loop() {
 
-testflipCounters2();
-
-// burger();
+burger();
 
 }

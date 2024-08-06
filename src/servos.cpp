@@ -3,11 +3,18 @@
 
 // Initialize servo pins, and write to them to go to and 90 degree angle. 
 void initializeServoPins() {
-    pinMode(servo1Pin, OUTPUT);
-    pinMode(servo2Pin, OUTPUT);
-    pinMode(servo3Pin, OUTPUT);
+    pinMode(servoBigClawPin, OUTPUT);
+    pinMode(servoSmallClawPin, OUTPUT);
+    pinMode(servoClawPin, OUTPUT);
 
     analogWriteFrequency(50);
+
+    // setServoAngle(servo2Pin, 0);
+    // setServoAngle(servo3Pin, 0);
+
+    raiseClaw();
+    openClaw();
+
 }
 
 void setServoAngle(int pin, int angle) {
@@ -23,36 +30,36 @@ void setServoAngle(int pin, int angle) {
 }
 
 void test4Servos() {
-    setServoAngle(servo1Pin, 20);
-    setServoAngle(servo2Pin, 33);
-    setServoAngle(servo3Pin, 0);
+    setServoAngle(servoBigClawPin, 20);
+    setServoAngle(servoSmallClawPin, 33);
+    setServoAngle(servoClawPin, 0);
     delay(1000);
-    setServoAngle(servo3Pin, 130);
+    setServoAngle(servoClawPin, 130);
     delay(1000);
 }
 
 void raiseClaw(){
-    setServoAngle(servo2Pin, raiseClawServo2Angle);
-    setServoAngle(servo3Pin, raiseClawServo3Angle);
+    setServoAngle(servoBigClawPin, raiseServoBigClawAngle);
+    setServoAngle(servoSmallClawPin, raiseServoSmallClawAngle);
 }
 
 void lowerClaw(){
-    setServoAngle(servo2Pin, lowerClawServo2Angle);
-    setServoAngle(servo3Pin, lowerClawServo3Angle);
+    setServoAngle(servoBigClawPin, lowerServoBigClawAngle);
+    setServoAngle(servoSmallClawPin, lowerServoSmallClawAngle);
 }
 
 void openClaw(){
-    setServoAngle(servo1Pin, openClawAngle);
+    setServoAngle(servoClawPin, openClawAngle);
 }
 
 void grabBottomBun(){
-    setServoAngle(servo1Pin, grabBottomBunAngle);
+    setServoAngle(servoClawPin, grabBottomBunAngle);
 }
 
 void grabPatty(){
-    setServoAngle(servo1Pin, grabPattyAngle);
+    setServoAngle(servoClawPin, grabPattyAngle);
 }
 
 void grabTopBun(){
-    setServoAngle(servo1Pin, grabTopBunAngle);
+    setServoAngle(servoClawPin, grabTopBunAngle);
 }

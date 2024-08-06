@@ -89,24 +89,34 @@ void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, D
 // drives towards wall without using microswitches. Just uses timing
 void driveToWall() {
     driveLeft(100);
-    delay(250);
+
+    unsigned long driveLeftStartTime = millis();
+
+    bool driveLeftComplete = false;
+
+    while (!driveLeftComplete){
+        unsigned long currentmillis = millis();
+
+        if (!driveLeftComplete && currentmillis - driveLeftStartTime >= 600){
+            driveLeftComplete = true;
+            setAllMotorsToZero();
+        }
+    }
     setAllMotorsToZero();
 }
 
 void frontStop(int speed, int frontSensorPin, int rightSensorPin, Direction touchingSide) {
     if (touchingSide == LEFT) {
         driveForwardLeft(speed);
-        // delay(300);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
                 break;
             } 
         }
-        delay(45);
-        // setAllMotorsToZero();
+        delay(100);
 
-        driveBackwardLeft(30);
+        driveBackwardLeft(25);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
@@ -114,23 +124,20 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin, Direction touc
             } 
         }
         // this delay is used to stabilize the motors
-        // delay(220);
         setAllMotorsToZero();
     }
     else if (touchingSide = RIGHT) {
         driveForwardRight(speed);
         // this delay is used to ignore the initial noise from the motors
-        delay(300);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
                 break;
             } 
         }
-        delay(10);
-        setAllMotorsToZero();
+        delay(100);
 
-        driveBackwardRight(40);
+        driveBackwardRight(24);
         while (true) {
            Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
@@ -138,8 +145,6 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin, Direction touc
             }  
         }
         // this delay is used to stabilize the motors
-        // delay(220);
-        delay(50);
         setAllMotorsToZero();  
     }
 }
@@ -147,17 +152,15 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin, Direction touc
 void backStop(int speed, int frontSensorPin, int backSensorPin, Direction touchingSide) {
     if (touchingSide == LEFT) {
         driveBackwardLeft(speed);
-        // delay(300);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
                 break;
             }
         }
-        delay(45);
-        // setAllMotorsToZero();
+        delay(100);
 
-        driveForwardLeft(30);
+        driveForwardLeft(24);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
@@ -166,19 +169,17 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, Direction touchi
         }
 
         // this delay is used to stabilize the motors
-        // delay(100);
         setAllMotorsToZero();
     }
     else if (touchingSide == RIGHT) {
         driveBackwardRight(speed);
-        delay(300);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
                 break;
             }
         }
-        delay(10);
+        delay(100);
         setAllMotorsToZero();
 
         driveForwardRight(24);
@@ -190,7 +191,6 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, Direction touchi
         }
 
         // this delay is used to stabilize the motors
-        delay(100);
         setAllMotorsToZero();
     }   
 }
@@ -262,9 +262,10 @@ void runThroughCourse() {
 }
 
 void pushToWall() {
-    // delay(300);
-    driveLeft(120);
-    delay(270);
+    driveLeft(80);
+    delay(400);
+
+
     setAllMotorsToZero();
 }
 

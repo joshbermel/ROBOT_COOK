@@ -12,7 +12,7 @@ int rotateTime = 500;
 int rotateSpeed = 110;
 
 // Drive Speed Parameter
-int driveSpeed = 50;
+int driveSpeed = 25;
 
 // Reflectance comparator thresholds
 // high reflectance is for being centered on the black tape 
@@ -21,26 +21,29 @@ int reflectanceThreshold = 2500;
 int reflectanceDifferenceThreshold = 400;
 
 // Detection speed parameter for sensing tape
-int detectSpeed = 45;
+int detectSpeed = 30;
 
 // Station Delay Parameter
-int stationDelay = 200;
+int stationDelay = 500;
 
 // delay between lowering and closing the claw at each station
-int servoDropDelay = 500;
+int servoDropDelay = 1000;
 
 // Calibrated Motor Speeds Parameters
 float FLSpeedCalibrated = 1.1;
-float FRSpeedCalibrated = 1.2;
+float FRSpeedCalibrated = 1.1;
 float BLSpeedCalibrated = 1.02;
-float BRSpeedCalibrated = 1.3;
+float BRSpeedCalibrated = 1.2;
 
 // Servo Angle parameters
-int raiseClawServo2Angle = 20;
-int raiseClawServo3Angle = 33;
-int lowerClawServo2Angle = 10;
-int lowerClawServo3Angle = 23;
-int grabBottomBunAngle = 70;
-int grabPattyAngle = 70;
-int grabTopBunAngle = 70;
+
+// for big claw (one closest to chassis), higher angle bring the claw closer inside to the chassis
+int raiseServoBigClawAngle = 35;
+// for smaller claw (connecting chassis crane and claw), smaller angle brings it more vertical
+int raiseServoSmallClawAngle = 27;
+int lowerServoBigClawAngle = 0;
+int lowerServoSmallClawAngle = 0;
+int grabBottomBunAngle = 102;
+int grabPattyAngle = 123;
+int grabTopBunAngle = 102;
 int openClawAngle = 0;
