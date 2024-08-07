@@ -48,6 +48,16 @@ void lowerClaw(){
     setServoAngle(servoSmallClawPin, lowerServoSmallClawAngle);
 }
 
+void dropbunClaw(){
+    setServoAngle(servoBigClawPin, dropbunServoBigClawAngle);
+    setServoAngle(servoSmallClawPin, dropbunServoSmallClawAngle);
+}
+
+void droppattyClaw(){
+    setServoAngle(servoBigClawPin, droppattyServoBigClawAngle);
+    setServoAngle(servoSmallClawPin, droppattyServoSmallClawAngle);
+}
+
 void openClaw(){
     setServoAngle(servoClawPin, openClawAngle);
 }

@@ -21,13 +21,13 @@ int reflectanceThreshold = 1500;
 int reflectanceDifferenceThreshold = 400;
 
 // Detection speed parameter for sensing tape
-int detectSpeed = 35;
+int detectSpeed = 30;
 
 // Station Delay Parameter
 int stationDelay = 200;
 
 // delay between lowering and closing the claw at each station
-int servoDropDelay = 400;
+int servoDropDelay = 600;
 
 // Calibrated Motor Speeds Parameters
 float FLSpeedCalibrated = 1.1;
@@ -42,7 +42,11 @@ int raiseServoBigClawAngle = 40;
 // for smaller claw (connecting chassis crane and claw), smaller angle brings it more vertical
 int raiseServoSmallClawAngle = 27;
 int lowerServoBigClawAngle = 0;
-int lowerServoSmallClawAngle = 0;
+int lowerServoSmallClawAngle = 5;
+int dropbunServoBigClawAngle = 25;
+int dropbunServoSmallClawAngle = 15;
+int droppattyServoBigClawAngle = 35;
+int droppattyServoSmallClawAngle = 25;
 int grabBottomBunAngle = 102;
 int grabPattyAngle = 123;
 int grabTopBunAngle = 102;

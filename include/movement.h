@@ -6,11 +6,19 @@ void flipCounters2(int clawDirection);
 void moveStoB();
 void moveBtoCB();
 void moveCBtoP();
-void movePtoCT();
-void moveCTtoB();
+// void movePtoCT();
+// void moveCTtoB();
 void moveCBtoB();
 void burger();
 void testflipCounters2();
+
+void moveStoP();
+void movePtoCT();
+void moveCTtoB();
+void moveBtoPl() ;
+void movePltoB();
+void burger2();
+
 
 
 

@@ -22,6 +22,7 @@ void openClaw();
 void grabBottomBun();
 void grabPatty();
 void grabTopBun();
-
+void dropbunClaw();
+void droppattyClaw();
 
 #endif // SERVOS_H

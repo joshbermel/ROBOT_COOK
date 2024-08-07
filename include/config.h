@@ -63,6 +63,9 @@ extern int grabBottomBunAngle;
 extern int grabPattyAngle;
 extern int grabTopBunAngle;
 extern int openClawAngle;
-
+extern int dropbunServoBigClawAngle;
+extern int dropbunServoSmallClawAngle;
+extern int droppattyServoBigClawAngle;
+extern int droppattyServoSmallClawAngle;
 
 #endif // CONFIG_H

@@ -88,7 +88,7 @@ void skipLinesAndStop(int linesToSkip, int moveSpeed, Direction moveDirection, D
 
 // drives towards wall without using microswitches. Just uses timing
 void driveToWall() {
-    driveLeft(100);
+    driveLeft(90);
 
     unsigned long driveLeftStartTime = millis();
 
@@ -97,7 +97,7 @@ void driveToWall() {
     while (!driveLeftComplete){
         unsigned long currentmillis = millis();
 
-        if (!driveLeftComplete && currentmillis - driveLeftStartTime >= 600){
+        if (!driveLeftComplete && currentmillis - driveLeftStartTime >= 750){
             driveLeftComplete = true;
             setAllMotorsToZero();
         }

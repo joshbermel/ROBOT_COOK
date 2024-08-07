@@ -44,16 +44,16 @@ void flipCounters2(int clawDirection) {
         }
 
         // Check if rotation is complete
-        if (rightDriveComplete && !rotateComplete && currentMillis - rotateStartTime >= 500) {
+        if (rightDriveComplete && !rotateComplete && currentMillis - rotateStartTime >= 550) {
             setAllMotorsToZero(); 
             rotateComplete = true;
             leftDriveStartTime = millis();
 
-            driveLeft(90);
+            driveLeft(80);
         }
 
         // Check if left drive is complete
-        if (rotateComplete && !leftDriveComplete && currentMillis - leftDriveStartTime >= 550) {
+        if (rotateComplete && !leftDriveComplete && currentMillis - leftDriveStartTime >= 850) {
             setAllMotorsToZero();
             leftDriveComplete = true;
         }
@@ -131,36 +131,36 @@ void moveCBtoP() {
     delay(servoDropDelay);
 }
 
-void movePtoCT() {
-    driveForwardLeft(50);
-    delay(200);
-    flipCounters2(1);
-    delay(400);
-    skipLinesAndStop(2, detectSpeed * 0.7, BACKWARD, LEFT);
-    pushToWall();
-    // precautionary delay for stability
-    delay(servoDropDelay);
-    lowerClaw();
-    delay(servoDropDelay);
-    openClaw();
-}
+// void movePtoCT() {
+//     driveForwardLeft(50);
+//     delay(200);
+//     flipCounters2(1);
+//     delay(400);
+//     skipLinesAndStop(2, detectSpeed * 0.7, BACKWARD, LEFT);
+//     pushToWall();
+//     // precautionary delay for stability
+//     delay(servoDropDelay);
+//     lowerClaw();
+//     delay(servoDropDelay);
+//     openClaw();
+// }
 
-void moveCTtoB() {
-    flipCounters2(1);
-    delay(400);
-    skipLinesAndStop(0, detectSpeed, BACKWARD, LEFT);
-    pushToWall();
-    // precautionary delay for stability
-    delay(servoDropDelay);
-    lowerClaw();
-    delay(servoDropDelay);
-    grabTopBun();
-    delay(reverbServoDelay * 3);
-    openClaw();
-    delay(reverbServoDelay);
-    grabTopBun();
-    delay(servoDropDelay);
-}
+// void moveCTtoB() {
+//     flipCounters2(1);
+//     delay(400);
+//     skipLinesAndStop(0, detectSpeed, BACKWARD, LEFT);
+//     pushToWall();
+//     // precautionary delay for stability
+//     delay(servoDropDelay);
+//     lowerClaw();
+//     delay(servoDropDelay);
+//     grabTopBun();
+//     delay(reverbServoDelay * 3);
+//     openClaw();
+//     delay(reverbServoDelay);
+//     grabTopBun();
+//     delay(servoDropDelay);
+// }
 
 void moveCBtoB() {
     flipCounters2(1);
@@ -174,6 +174,103 @@ void moveCBtoB() {
     grabBottomBun();
     delay(servoDropDelay);
 }
+
+
+// beginning of functions used for burger2()
+
+void moveStoP() {
+    raiseClaw();
+    openClaw();
+    delay(1000);
+    driveToWall();
+    skipLinesAndStop(0, 35, FORWARD, LEFT);
+    pushToWall();
+    // precautionary delay for stability
+    delay(servoDropDelay);
+    lowerClaw();
+    delay(servoDropDelay);
+    grabPatty();
+    delay(reverbServoDelay* 2);
+    openClaw();
+    delay(reverbServoDelay);
+    grabPatty();
+    delay(servoDropDelay);
+}
+
+void movePtoCT() {
+    driveForwardLeft(50);
+    delay(300);
+    flipCounters2(1);
+    driveBackwardLeft(45);
+    delay(1000);
+    skipLinesAndStop(1, 20, BACKWARD, LEFT);
+    pushToWall();
+    // precautionary delay for stability
+    delay(servoDropDelay);
+    droppattyClaw();
+    delay(servoDropDelay);
+    openClaw();
+    delay(servoDropDelay);
+}
+
+void moveCTtoB() {
+    flipCounters2(1);
+    skipLinesAndStop(1, detectSpeed, BACKWARD, LEFT);
+    pushToWall();
+    // precautionary delay for stability
+    delay(servoDropDelay);
+    lowerClaw();
+    delay(servoDropDelay);
+    grabBottomBun();
+    delay(servoDropDelay);
+}
+
+void moveBtoPl() {
+    driveForwardLeft(45);
+    delay(1200);
+    flipCounters2(1);
+    skipLinesAndStop(0, 25, BACKWARD, LEFT);
+    delay(servoDropDelay);
+    pushToWall();
+    // precautionary delay for stability
+    delay(servoDropDelay);
+    dropbunClaw();
+    delay(servoDropDelay);
+    openClaw();
+    delay(servoDropDelay);
+    raiseClaw();
+}
+
+void movePltoB() {
+    driveForwardLeft(60);
+    delay(500);
+    setAllMotorsToZero();
+    flipCounters2(1);
+    skipLinesAndStop(1, detectSpeed, BACKWARD, LEFT);
+    pushToWall();
+    // precautionary delay for stability
+    delay(servoDropDelay);
+    lowerClaw();
+    delay(servoDropDelay);
+    grabTopBun();
+    delay(servoDropDelay);
+}
+void movePltoP() {
+    driveForwardLeft(60);
+    delay(300);
+    flipCounters2(1);
+    driveBackwardLeft(60);
+    delay(1000);
+    skipLinesAndStop(0, 25, BACKWARD, LEFT);
+    pushToWall();
+    // precautionary delay for stability
+    delay(servoDropDelay);
+    lowerClaw();
+    delay(servoDropDelay);
+    grabPatty();
+    delay(servoDropDelay);
+}
+
 
 void burger(){
     bool started = false;
@@ -220,6 +317,55 @@ void burger(){
         moveBtoCB();
         delay(stationDelay);
     }
+}
+
+void burger2(){
+    bool started = false;
+    int runTimes = 0;
+    while (!started){
+        started = true;
+        moveStoP();
+        delay(stationDelay);
+
+        movePtoCT();
+        delay(stationDelay);
+
+        moveCTtoB();
+        delay(stationDelay);
+
+        moveBtoPl();
+        delay(stationDelay);
+
+        movePltoB();
+        delay(stationDelay);
+
+        moveBtoPl();
+        delay(stationDelay);
+
+        movePltoP();
+        delay(stationDelay);
+    }
+    
+    while (runTimes < 2){
+        runTimes++;
+
+        movePtoCT();
+        delay(stationDelay);
+
+        moveCTtoB();
+        delay(stationDelay);
+
+        moveBtoPl();
+        delay(stationDelay);
+
+        movePltoB();
+        delay(stationDelay);
+
+        moveBtoPl();
+        delay(stationDelay);
+
+        movePltoP();
+}
 }
 
 void testflipCounters2() {

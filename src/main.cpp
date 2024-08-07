@@ -17,7 +17,12 @@ void setup() {
 void loop() {
 
 delay(3000);
-burger();
+burger2();
 delay(100000);
+
+// dropClaw();
+// delay(1000);
+// raiseClaw();
+// delay(1000);
 
 }
