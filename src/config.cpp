@@ -27,7 +27,7 @@ int detectSpeed = 35;
 int stationDelay = 200;
 
 // delay between lowering and closing the claw at each station
-int servoDropDelay = 500;
+int servoDropDelay = 400;
 
 // Calibrated Motor Speeds Parameters
 float FLSpeedCalibrated = 1.1;
@@ -38,7 +38,7 @@ float BRSpeedCalibrated = 1.2;
 // Servo Angle parameters
 
 // for big claw (one closest to chassis), higher angle bring the claw closer inside to the chassis
-int raiseServoBigClawAngle = 35;
+int raiseServoBigClawAngle = 40;
 // for smaller claw (connecting chassis crane and claw), smaller angle brings it more vertical
 int raiseServoSmallClawAngle = 27;
 int lowerServoBigClawAngle = 0;

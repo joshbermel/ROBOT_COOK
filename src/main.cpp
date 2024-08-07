@@ -16,6 +16,8 @@ void setup() {
 }
 void loop() {
 
+delay(3000);
 burger();
+delay(100000);
 
 }
