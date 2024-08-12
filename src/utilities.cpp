@@ -97,7 +97,7 @@ void driveToWall() {
     while (!driveLeftComplete){
         unsigned long currentmillis = millis();
 
-        if (!driveLeftComplete && currentmillis - driveLeftStartTime >= 750){
+        if (!driveLeftComplete && currentmillis - driveLeftStartTime >= 600){
             driveLeftComplete = true;
             setAllMotorsToZero();
         }
@@ -116,7 +116,7 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin, Direction touc
         }
         delay(100);
 
-        driveBackwardLeft(26);
+        driveBackwardLeft(35);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
@@ -137,7 +137,7 @@ void frontStop(int speed, int frontSensorPin, int rightSensorPin, Direction touc
         }
         delay(100);
 
-        driveBackwardRight(26);
+        driveBackwardRight(35);
         while (true) {
            Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
@@ -160,7 +160,7 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, Direction touchi
         }
         delay(100);
 
-        driveForwardLeft(26);
+        driveForwardLeft(35);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {
@@ -182,7 +182,7 @@ void backStop(int speed, int frontSensorPin, int backSensorPin, Direction touchi
         delay(100);
         setAllMotorsToZero();
 
-        driveForwardRight(26);
+        driveForwardRight(35);
         while (true) {
             Direction dir = determineDirection(frontReflectanceSensor, backReflectanceSensor);
             if (dir != NOT_ON_LINE) {

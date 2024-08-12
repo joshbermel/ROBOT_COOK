@@ -54,8 +54,8 @@ void dropbunClaw(){
 }
 
 void droppattyClaw(){
-    setServoAngle(servoBigClawPin, droppattyServoBigClawAngle);
-    setServoAngle(servoSmallClawPin, droppattyServoSmallClawAngle);
+    setServoAngle(servoBigClawPin, droppattyServoBigClawAngle - 15);
+    setServoAngle(servoSmallClawPin, droppattyServoSmallClawAngle - 10);
 }
 
 void openClaw(){

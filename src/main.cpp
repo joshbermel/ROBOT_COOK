@@ -20,9 +20,13 @@ delay(3000);
 burger2();
 delay(100000);
 
-// dropClaw();
+// droppattyClaw();
 // delay(1000);
-// raiseClaw();
+// openClaw();
 // delay(1000);
+// grabPatty();
+
+// delay(1000);
+// lowerClaw();
 
 }

@@ -44,7 +44,7 @@ void flipCounters2(int clawDirection) {
         }
 
         // Check if rotation is complete
-        if (rightDriveComplete && !rotateComplete && currentMillis - rotateStartTime >= 550) {
+        if (rightDriveComplete && !rotateComplete && currentMillis - rotateStartTime >= 520) {
             setAllMotorsToZero(); 
             rotateComplete = true;
             leftDriveStartTime = millis();
@@ -53,7 +53,7 @@ void flipCounters2(int clawDirection) {
         }
 
         // Check if left drive is complete
-        if (rotateComplete && !leftDriveComplete && currentMillis - leftDriveStartTime >= 850) {
+        if (rotateComplete && !leftDriveComplete && currentMillis - leftDriveStartTime >= 650) {
             setAllMotorsToZero();
             leftDriveComplete = true;
         }
@@ -181,12 +181,11 @@ void moveCBtoB() {
 void moveStoP() {
     raiseClaw();
     openClaw();
-    delay(1000);
     driveToWall();
-    skipLinesAndStop(0, 35, FORWARD, LEFT);
+    skipLinesAndStop(0, 30, FORWARD, LEFT);
     pushToWall();
     // precautionary delay for stability
-    delay(servoDropDelay);
+    // delay(servoDropDelay);
     lowerClaw();
     delay(servoDropDelay);
     grabPatty();
@@ -198,11 +197,10 @@ void moveStoP() {
 }
 
 void movePtoCT() {
-    driveForwardLeft(50);
-    delay(300);
+    raiseClaw();
+    driveForwardLeft(60);
+    delay(1400);
     flipCounters2(1);
-    driveBackwardLeft(45);
-    delay(1000);
     skipLinesAndStop(1, 20, BACKWARD, LEFT);
     pushToWall();
     // precautionary delay for stability
@@ -226,15 +224,15 @@ void moveCTtoB() {
 }
 
 void moveBtoPl() {
+    raiseClaw();
     driveForwardLeft(45);
-    delay(1200);
+    delay(1300);
     flipCounters2(1);
     skipLinesAndStop(0, 25, BACKWARD, LEFT);
-    delay(servoDropDelay);
     pushToWall();
     // precautionary delay for stability
     delay(servoDropDelay);
-    dropbunClaw();
+    droppattyClaw();
     delay(servoDropDelay);
     openClaw();
     delay(servoDropDelay);
@@ -249,19 +247,23 @@ void movePltoB() {
     skipLinesAndStop(1, detectSpeed, BACKWARD, LEFT);
     pushToWall();
     // precautionary delay for stability
-    delay(servoDropDelay);
+   delay(servoDropDelay);
     lowerClaw();
     delay(servoDropDelay);
+    grabTopBun();
+    delay(reverbServoDelay* 2);
+    openClaw();
+    delay(reverbServoDelay);
     grabTopBun();
     delay(servoDropDelay);
 }
 void movePltoP() {
     driveForwardLeft(60);
-    delay(300);
+    delay(500);
     flipCounters2(1);
     driveBackwardLeft(60);
-    delay(1000);
-    skipLinesAndStop(0, 25, BACKWARD, LEFT);
+    delay(1400);
+    skipLinesAndStop(1, 25, BACKWARD, LEFT);
     pushToWall();
     // precautionary delay for stability
     delay(servoDropDelay);

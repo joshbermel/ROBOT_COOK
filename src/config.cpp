@@ -24,10 +24,10 @@ int reflectanceDifferenceThreshold = 400;
 int detectSpeed = 30;
 
 // Station Delay Parameter
-int stationDelay = 200;
+int stationDelay = 0 ;
 
 // delay between lowering and closing the claw at each station
-int servoDropDelay = 600;
+int servoDropDelay = 500;
 
 // Calibrated Motor Speeds Parameters
 float FLSpeedCalibrated = 1.1;
@@ -38,16 +38,17 @@ float BRSpeedCalibrated = 1.2;
 // Servo Angle parameters
 
 // for big claw (one closest to chassis), higher angle bring the claw closer inside to the chassis
-int raiseServoBigClawAngle = 40;
+int raiseServoBigClawAngle = 45;
 // for smaller claw (connecting chassis crane and claw), smaller angle brings it more vertical
-int raiseServoSmallClawAngle = 27;
-int lowerServoBigClawAngle = 0;
-int lowerServoSmallClawAngle = 5;
-int dropbunServoBigClawAngle = 25;
-int dropbunServoSmallClawAngle = 15;
-int droppattyServoBigClawAngle = 35;
-int droppattyServoSmallClawAngle = 25;
-int grabBottomBunAngle = 102;
-int grabPattyAngle = 123;
-int grabTopBunAngle = 102;
+int raiseServoSmallClawAngle = 120;
+int lowerServoBigClawAngle = 28;
+int lowerServoSmallClawAngle = 135;
+int dropbunServoBigClawAngle = 30;
+int dropbunServoSmallClawAngle = 20;
+// we should drop both buns and patty at the drop patty angles
+int droppattyServoBigClawAngle = 30;
+int droppattyServoSmallClawAngle = 130;
+int grabBottomBunAngle = 150;
+int grabPattyAngle = 165;
+int grabTopBunAngle = 150;
 int openClawAngle = 0;
