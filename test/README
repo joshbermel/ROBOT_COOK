@@ -1,11 +1,41 @@
+📁 test/ — Subsystem and Integration Tests
+This folder contains individual test programs to validate functionality of hardware interfaces and subsystems within the ROBOT_COOK autonomous robotics project. Each .cpp file is written as a standalone PlatformIO test sketch targeting the ESP32 microcontroller.
 
-This directory is intended for PlatformIO Test Runner and project tests.
+🧪 Test File Summary
+File	Description
+drivetest.cpp	Tests motor driving in all directions and validates rotation logic using drive.h.
+reflectancedrivetest.cpp	Integrates sensor reading with line-following motion control to dynamically center the robot on the black tape.
+reflectancetest.cpp	Reports raw reflectance sensor values and direction classifications (e.g., LEFT, RIGHT, CENTERED).
+servotest.cpp	Sweeps servo angles through a range to validate positioning and tracking of servo claw movement.
+microswitchtest.cpp	Verifies microswitch functionality and pin readings, printing results over serial.
 
-Unit Testing is a software testing method by which individual units of
-source code, sets of one or more MCU program modules together with associated
-control data, usage procedures, and operating procedures, are tested to
-determine whether they are fit for use. Unit testing finds problems early
-in the development cycle.
+🧰 How to Run
+Open the test file you want to run (e.g. servotest.cpp) in VSCode.
 
-More information about PlatformIO Unit Testing:
-- https://docs.platformio.org/en/latest/advanced/unit-testing/index.html
+Flash it to the ESP32 board:
+
+pio run --target upload --environment <your_env_name>
+
+Monitor serial output:
+
+pio device monitor
+
+Observe the behavior of the corresponding hardware module (motors, servos, sensors, etc.).
+
+🧠 Why This Matters
+These tests ensure that:
+
+Hardware components are wired and functioning correctly
+
+Pin mappings match the definitions in config.h
+
+Logic modules (drive, sensors, servos) behave as expected in isolation
+
+Bugs can be caught before integrating into full task routines like burger2()
+
+📌 Notes
+These are not PlatformIO unit tests (with unity.h), but rather standalone integration test sketches.
+
+Future improvement: adopt PlatformIO Unit Testing for CI-style validation.
+
+Test output is written to serial (115200 baud) and should be monitored live during execution.
