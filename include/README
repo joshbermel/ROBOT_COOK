@@ -1,39 +1,31 @@
+📁 include/ — Header Files Directory
+This folder contains all shared interface declarations and configuration constants used across the ROBOT_COOK autonomous robotics project. These headers define critical behavior and pin mappings for motor control, servo actuation, movement sequencing, reflectance sensing, and general utility routines.
 
-This directory is intended for project header files.
+📄 File Overview
+File	Purpose
+config.h	Centralized configuration for hardware pin assignments, speed thresholds, rotation timing, and calibrated servo angles.
+drive.h	Functions for motor control: directional driving, braking, turning, and rotation.
+movement.h	High-level movement routines that coordinate tasks like moving between stations and executing the burger-building sequence.
+sensors.h	Reflectance line sensor interface, including line detection logic and direction classification.
+servos.h	Functions to operate servo motors for the robot’s claws, including grabbing, releasing, and angle management using a ServoControl struct.
+utilities.h	Composite utilities that combine sensor and motor logic for path following, obstacle handling, and course completion logic.
+README	(Template placeholder — superseded by this file.)
 
-A header file is a file containing C declarations and macro definitions
-to be shared between several project source files. You request the use of a
-header file in your project source file (C, C++, etc) located in `src` folder
-by including it, with the C preprocessing directive `#include'.
+🔧 Usage
+These headers are intended to be included in source files inside the /src/ directory. All modules are written in C++ and built using the PlatformIO environment targeting an ESP32.
 
-```src/main.c
+Example:
 
-#include "header.h"
+#include "drive.h"
+#include "config.h"
 
-int main (void)
-{
- ...
+void setup() {
+    initializeMotorPins();
+    driveForwardStraight(driveSpeed);
 }
-```
+📌 Notes
+The project relies on a calibrated set of servo angles and drive speeds defined in config.h to ensure precise actuation.
 
-Including a header file produces the same results as copying the header file
-into each source file that needs it. Such copying would be time-consuming
-and error-prone. With a header file, the related declarations appear
-in only one place. If they need to be changed, they can be changed in one
-place, and programs that include the header file will automatically use the
-new version when next recompiled. The header file eliminates the labor of
-finding and changing all the copies as well as the risk that a failure to
-find one copy will result in inconsistencies within a program.
+movement.h and utilities.h provide high-level abstractions and should be used to script complex behaviors rather than duplicating low-level commands.
 
-In C, the usual convention is to give header files names that end with `.h'.
-It is most portable to use only letters, digits, dashes, and underscores in
-header file names, and at most one dot.
-
-Read more about using header files in official GCC documentation:
-
-* Include Syntax
-* Include Operation
-* Once-Only Headers
-* Computed Includes
-
-https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html
+All directional enums (e.g., FORWARD, LEFT) are declared in sensors.h.
